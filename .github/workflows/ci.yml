@@ -1,0 +1,54 @@
+name: Verify HabitFlow
+on: [push, pull_request]
+jobs:
+  dotnet:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore HabitFlow.sln
+      - run: dotnet build HabitFlow.sln -c Release --no-restore
+      - run: dotnet test HabitFlow.sln -c Release --no-build --collect:"XPlat Code Coverage" --results-directory TestResults
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dotnet-results-${{ matrix.os }}
+          path: TestResults
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: dotnet build HabitFlow.sln -c Release
+      - run: |
+          ASPNETCORE_ENVIRONMENT=Development dotnet run --project src/HabitFlow.Web -c Release --no-build --no-launch-profile --urls http://127.0.0.1:5080 > server.log 2>&1 &
+          for attempt in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:5080/health; then exit 0; fi
+            sleep 1
+          done
+          cat server.log
+          exit 1
+      - run: npm ci
+        working-directory: tests/e2e
+      - run: npx playwright install --with-deps chromium firefox
+        working-directory: tests/e2e
+      - run: npm test
+        working-directory: tests/e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-results
+          path: |
+            tests/e2e/playwright-report
+            tests/e2e/test-results
+            server.log
