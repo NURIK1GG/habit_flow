@@ -9,7 +9,7 @@ public sealed class HttpTests : IClassFixture<TestApplication>
     public HttpTests(TestApplication application) => this.application = application;
     private HttpClient Client() => application.CreateClient(new() { AllowAutoRedirect = false, HandleCookies = true });
     private static string Token(string html) => Regex.Match(html, "name=\"__RequestVerificationToken\"[^>]*value=\"([^\"]+)\"").Groups[1].Value;
-    private static async Task<HttpResponseMessage> Login(HttpClient client, string email = "user@habitflow.local", string password = "Demo!Pass123")
+    private static async Task<HttpResponseMessage> Login(HttpClient client, string email = "arman@habitflow.local", string password = "Demo!Pass123")
     {
         var html = await client.GetStringAsync("/account/login"); var token = Token(html); Assert.NotEmpty(token);
         return await client.PostAsync("/auth/login", new FormUrlEncodedContent(new Dictionary<string, string> { ["email"] = email, ["password"] = password, ["__RequestVerificationToken"] = token }));
@@ -32,13 +32,13 @@ public sealed class HttpTests : IClassFixture<TestApplication>
     [Fact]
     public async Task AdminCanSeeAccountAdministration()
     {
-        using var client = Client(); Assert.Equal(HttpStatusCode.Redirect, (await Login(client, "admin@habitflow.local")).StatusCode);
+        using var client = Client(); Assert.Equal(HttpStatusCode.Redirect, (await Login(client, "ayan@habitflow.local")).StatusCode);
         Assert.Contains("Community accounts", await client.GetStringAsync("/admin"));
     }
     [Fact]
     public async Task MissingAntiforgeryTokenIsRejected()
     {
-        using var client = Client(); var response = await client.PostAsync("/auth/login", new FormUrlEncodedContent(new Dictionary<string, string> { ["email"] = "user@habitflow.local", ["password"] = "Demo!Pass123" }));
+        using var client = Client(); var response = await client.PostAsync("/auth/login", new FormUrlEncodedContent(new Dictionary<string, string> { ["email"] = "arman@habitflow.local", ["password"] = "Demo!Pass123" }));
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
     [Fact]

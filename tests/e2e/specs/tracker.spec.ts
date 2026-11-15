@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-async function login(page: Page, email = 'user@habitflow.local') {
+async function login(page: Page, email = 'arman@habitflow.local') {
   await page.goto('/account/login');
   await page.getByLabel('Email address').fill(email);
   await page.getByLabel('Password', { exact: true }).fill('Demo!Pass123');
@@ -76,7 +76,7 @@ test('role-based navigation and administrator suspension', async ({ page, browse
   await page.goto('/admin');
   await expect(page.getByRole('heading', { name: 'Community accounts' })).toHaveCount(0);
   const context = await browser.newContext(); const admin = await context.newPage();
-  await login(admin, 'admin@habitflow.local'); await admin.goto('/admin');
+  await login(admin, 'ayan@habitflow.local'); await admin.goto('/admin');
   const row = admin.getByRole('row').filter({ hasText: email });
   await expect(row).toBeVisible(); await row.getByRole('button', { name: 'Suspend', exact: true }).click();
   await expect(row).toContainText('Suspended');
@@ -84,7 +84,7 @@ test('role-based navigation and administrator suspension', async ({ page, browse
   await expect(row).toContainText('Active'); await context.close();
 });
 test('responsive overview and accessibility', async ({ page }) => {
-  await login(page, 'maya@habitflow.local');
+  await login(page, 'aruzhan@habitflow.local');
   await expect(page.locator('.chart-panel svg')).toBeVisible();
   await expect(page.locator('.stat-card')).toHaveCount(4);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);

@@ -24,17 +24,21 @@ public sealed class DatabaseSeeder(AppDbContext db, UserManager<AppUser> users, 
             return;
         }
         // Idempotent per user, no fixed accounts or passwords are created in Production.
-        var demos = new[] { ("admin@habitflow.local", "Ayan Sapar", true), ("user@habitflow.local", "Arman Nurlan", false),
-            ("maya@habitflow.local", "Aruzhan Serik", false), ("noah@habitflow.local", "Dias Alikhan", false),
-            ("sara@habitflow.local", "Aigerim Bolat", false) };
+        var demos = new[] { ("ayan@habitflow.local", "admin@habitflow.local", "Ayan Sapar", true), ("arman@habitflow.local", "user@habitflow.local", "Arman Nurlan", false),
+            ("aruzhan@habitflow.local", "maya@habitflow.local", "Aruzhan Serik", false), ("dias@habitflow.local", "noah@habitflow.local", "Dias Alikhan", false),
+            ("aigerim@habitflow.local", "sara@habitflow.local", "Aigerim Bolat", false) };
         var today = TrackerCalendar.Today(clock);
         for (var index = 0; index < demos.Length; index++)
         {
-            var (email, name, admin) = demos[index];
-            if (await users.FindByEmailAsync(email) is { } existing)
+            var (email, legacyEmail, name, admin) = demos[index];
+            if ((await users.FindByEmailAsync(email) ?? await users.FindByEmailAsync(legacyEmail)) is { } existing)
             {
                 var originalNames = new[] { "Alex Morgan", "Jamie Rivera", "Maya Chen", "Noah Wilson", "Sara Patel" };
-                if (originalNames.Contains(existing.DisplayName)) { existing.DisplayName = name; Ensure(await users.UpdateAsync(existing)); }
+                if (originalNames.Contains(existing.DisplayName)) existing.DisplayName = name;
+                // Keep the account ID, password, roles and history when upgrading old demo logins.
+                existing.Email = email;
+                existing.UserName = email;
+                Ensure(await users.UpdateAsync(existing));
                 continue;
             }
             var user = await CreateAsync(email, name, "Demo!Pass123", admin, true);

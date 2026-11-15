@@ -7,6 +7,33 @@ namespace HabitFlow.Tests;
 public sealed class SeederTests
 {
     [Fact]
+    public async Task DevelopmentRenamesLegacyLoginWithoutLosingAccountHistory()
+    {
+        using var application = new TestApplication();
+        using var client = application.CreateClient();
+        await using var scope = application.Services.CreateAsyncScope();
+        var users = scope.ServiceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<AppUser>>();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var user = (await users.FindByEmailAsync("arman@habitflow.local"))!;
+        var id = user.Id;
+        var routineCount = await db.Routines.CountAsync(r => r.OwnerId == id);
+        user.Email = "user@habitflow.local";
+        user.UserName = "user@habitflow.local";
+        Assert.True((await users.UpdateAsync(user)).Succeeded);
+        var seeder = scope.ServiceProvider.GetRequiredService<DatabaseSeeder>();
+        await seeder.RunAsync();
+        await seeder.RunAsync();
+        var renamed = (await users.FindByEmailAsync("arman@habitflow.local"))!;
+        Assert.Equal(id, renamed.Id);
+        Assert.Equal("arman@habitflow.local", renamed.UserName);
+        Assert.Null(await users.FindByEmailAsync("user@habitflow.local"));
+        Assert.True(await users.CheckPasswordAsync(renamed, "Demo!Pass123"));
+        Assert.True(await users.IsInRoleAsync(renamed, "User"));
+        Assert.True(routineCount > 0);
+        Assert.Equal(routineCount, await db.Routines.CountAsync(r => r.OwnerId == id));
+        Assert.Equal(5, await db.Users.CountAsync());
+    }
+    [Fact]
     public async Task ProductionBootstrapsOnlyConfiguredAdministratorAndIsIdempotent()
     {
         using var application = new ProductionApplication();

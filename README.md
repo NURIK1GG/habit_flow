@@ -124,11 +124,11 @@ IDE: откройте `HabitFlow.sln` в Visual Studio 2022 с ASP.NET workload,
 
 | Роль | Email | Пароль |
 |---|---|---|
-| Admin + User | admin@habitflow.local | Demo!Pass123 |
-| User | user@habitflow.local | Demo!Pass123 |
-| User | maya@habitflow.local | Demo!Pass123 |
-| User | noah@habitflow.local | Demo!Pass123 |
-| User | sara@habitflow.local | Demo!Pass123 |
+| Admin + User | ayan@habitflow.local | Demo!Pass123 |
+| User | arman@habitflow.local | Demo!Pass123 |
+| User | aruzhan@habitflow.local | Demo!Pass123 |
+| User | dias@habitflow.local | Demo!Pass123 |
+| User | aigerim@habitflow.local | Demo!Pass123 |
 
 Регистрация создаёт только роль `User`, профиль по умолчанию закрыт. Клиент не может назначить себе Admin.
 
