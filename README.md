@@ -90,31 +90,15 @@ For a short demo, create an account, set its weekly goal to 1 and complete a rou
 
 ## Project structure
 
-```text
-src/
-  HabitFlow.Domain/          Entities, Astana calendar and streak calculation
-  HabitFlow.Application/     DTOs, interfaces, validation and progress calculations
-  HabitFlow.Infrastructure/  Identity, EF Core, repositories, migrations and seeding
-  HabitFlow.Web/             Blazor pages, components, state and SignalR
-tests/
-  HabitFlow.Tests/           xUnit, SQLite integration, HTTP and bUnit tests
-  e2e/                      Playwright browser tests
-docs/                       Database, architecture, QA and team notes
-```
+- `HabitFlow.Domain`: entities, the Astana calendar and streak calculation.
+- `HabitFlow.Application`: DTOs, interfaces, validation and progress calculations.
+- `HabitFlow.Infrastructure`: Identity, EF Core, repositories, migrations and seeding.
+- `HabitFlow.Web`: Blazor pages, components, state and SignalR.
+- `tests/HabitFlow.Tests`: unit, database, HTTP and component tests.
+- `tests/e2e`: browser tests.
+- `docs`: supporting project notes.
 
 Dependencies point towards the core: Domain has no EF Core or Blazor dependency; Application defines the interfaces; Infrastructure implements storage. Web wires the services together through dependency injection.
-
-```mermaid
-flowchart LR
-    UI[Blazor components] --> State[Scoped AppState]
-    State --> App[Application services]
-    App --> Rules[Domain rules]
-    App --> Repo[Repository interface]
-    Repo --> EF[EF Core repository]
-    EF --> DB[(SQLite)]
-    App --> Hub[SignalR notification]
-    Hub --> UI
-```
 
 A form submits a DTO through an EventCallback. AppState serializes operations and raises its Changed event when data is refreshed. Services check the current user and validate the operation before the repository writes it. A SignalR event then tells connected clients to refresh; it contains no private notes or routine details.
 
@@ -126,15 +110,6 @@ The local database is stored at:
 
 ```text
 src/HabitFlow.Web/App_Data/habitflow.db
-```
-
-```mermaid
-erDiagram
-    AspNetUsers ||--o{ Routines : owns
-    Routines ||--o{ RoutineSteps : contains
-    Routines ||--o{ CheckIns : records
-    AspNetUsers ||--o{ AspNetUserRoles : has
-    AspNetRoles ||--o{ AspNetUserRoles : assigns
 ```
 
 Identity stores the accounts and roles. Routines contain the schedule and exercise steps; CheckIns store dates, minutes and notes. A unique index on `(RoutineId, Date)` prevents duplicate daily entries. An integer revision detects competing edits. WeeklyGoal is stored on the user; weekly totals, streaks and milestones are calculated from the activity history.
