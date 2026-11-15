@@ -1,161 +1,159 @@
-# HabitFlow — Interactive Habit & Workout Progress Tracker
+# HabitFlow
 
-Готовое решение Blazor Web App на .NET 8: конструктор привычек и тренировок, серии, графики, журнал и социальный рейтинг с добровольным участием. Полный исходный код находится в `src/`, тесты — в `tests/`. Для работы приложения не нужны Node.js, Docker, облачная БД, внешние API или CDN.
+HabitFlow is a habit and workout tracker built with Blazor and .NET 8. It brings routines, daily check-ins and workout exercises into one place, with weekly goals and a shared leaderboard for accountability.
 
-## Обзор, цель и задачи
+The aim is to make consistency visible: users can see what they completed, where a streak stopped and how their current week compares with their target.
 
-**Цель:** помочь человеку регулярно выполнять небольшие, измеримые действия и видеть накопленный результат.
+## Features
 
-**Задачи:** создавать персональные программы по дням недели; задавать упражнения, подходы и повторения; записывать время и личные заметки; вычислять текущие и лучшие серии; сравнивать активность за 7/14/28 дней; поддерживать ответственность через месячный рейтинг; обеспечивать безопасный доступ пользователей и администраторов.
+- Create habits or workouts with a weekly schedule and a target duration.
+- Add exercises with sets and repetitions to a routine.
+- Record a check-in with minutes spent and a private note. Undo an incorrect entry from the activity journal.
+- Track current and best streaks. Scheduled rest days do not break a streak.
+- Set a weekly check-in goal and follow it on the dashboard.
+- Earn milestones for a first check-in, 10 check-ins, a seven-day scheduled streak and 300 minutes of activity.
+- View activity charts for 7, 14 or 28 days and a 28-day calendar.
+- Join the monthly leaderboard by making a profile public. Private notes and routine details stay private.
+- Switch between light and dark themes. The browser remembers the choice.
+- Use the Admin page to suspend or restore standard accounts.
 
-**Практическая значимость:** один интерфейс объединяет тренировки и повседневные привычки; дни отдыха не разрывают серии, архив сохраняет историю, а публичность профиля выбирает сам участник. Приложение не требует платных сервисов.
+Check-ins, weeks and leaderboard months use **Astana time (UTC+5)**. A week runs from Monday to Sunday. Security timestamps, such as account lockout expiry, use UTC.
 
-## Точная структура решения
+## Run locally
 
-```text
-HabitFlow/
-├── HabitFlow.sln
-├── global.json
-├── Directory.Build.props
-├── .config/dotnet-tools.json
-├── src/
-│   ├── HabitFlow.Domain/
-│   │   ├── Routine.cs                   # Routine, RoutineStep, CheckIn, RoutineKind
-│   │   └── StreakCalculator.cs
-│   ├── HabitFlow.Application/
-│   │   ├── Contracts.cs                 # DTO, команды, интерфейсы, исключения
-│   │   └── TrackerService.cs            # Проверки и сценарии приложения
-│   ├── HabitFlow.Infrastructure/
-│   │   ├── AppUser.cs
-│   │   ├── AppDbContext.cs
-│   │   ├── DesignTimeDbContextFactory.cs
-│   │   ├── RoutineRepository.cs
-│   │   ├── AdminService.cs
-│   │   ├── DatabaseSeeder.cs
-│   │   └── Migrations/                  # InitialCreate + snapshot модели
-│   └── HabitFlow.Web/
-│       ├── Program.cs
-│       ├── appsettings.json
-│       ├── Properties/launchSettings.json
-│       ├── Services/                    # Identity, AppState, Toast, SignalR
-│       ├── Components/
-│       │   ├── App.razor
-│       │   ├── Routes.razor
-│       │   ├── Layout/MainLayout.razor
-│       │   ├── Pages/                   # Четыре страницы + общий Workspace, Settings, Admin, Login, Register
-│       │   └── Shared/                  # Карточки, графики, формы, модальные окна
-│       └── wwwroot/                     # Локальные Bootstrap/SignalR, CSS, JS, favicon
-├── tests/
-│   ├── HabitFlow.Tests/                 # xUnit, SQLite, bUnit, WebApplicationFactory
-│   └── e2e/                            # Playwright + axe, четыре конфигурации браузера
-└── docs/                               # Архитектура, схема, рубрика, защита, QA
-```
+Install the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0). Check the installed SDKs with `dotnet --list-sdks`; an `8.0.x` version must be available. Node.js is only needed for the browser tests.
 
-## Технологии: сравнение и обоснование
-
-| Область | Выбор | Альтернатива | Причина |
-|---|---|---|---|
-| UI | Blazor Interactive Server | WebAssembly / React | Общий C# стек, быстрая SSR-загрузка, серверная авторизация; нужен устойчивый канал связи |
-| Платформа | .NET 8 LTS | .NET Framework | Кроссплатформенность и требование задания; для эксплуатации после окончания поддержки 10.11.2026 следует планировать переход на поддерживаемую версию |
-| Данные | EF Core 8 + SQLite | PostgreSQL / SQL Server | Автоматическое создание файла и миграции на Windows/macOS/Linux; для большого числа одновременных записей лучше серверная БД |
-| Идентификация | ASP.NET Core Identity + cookie | Самописный JWT | Хеширование паролей, роли, блокировки, security stamp и защита cookie средствами платформы |
-| UI-набор | Bootstrap 5.3.9 + собственные стили | MudBlazor | Небольшой объём зависимостей, локальные ресурсы, адаптивные формы |
-| Графики | Доступный SVG-компонент | Chart.js / ApexCharts | Без сетевой загрузки и лицензирования сервиса, таблица-альтернатива для чтения данных |
-| Состояние | Scoped AppState + события | Fluxor / глобальный singleton | Отдельный контейнер на circuit пользователя, простые подписки и контролируемая сериализация операций |
-| Live updates | ASP.NET Core SignalR | Опрос таймером | Уведомление после фиксации записи, автоматическое переподключение, обновление нескольких клиентов |
-| Проверки | xUnit + bUnit + Playwright + axe | Только ручное тестирование | Раздельная проверка правил, реальной SQLite, компонентов, HTTP и пользовательских сценариев |
-
-## Архитектура и поток данных
-
-```mermaid
-flowchart LR
-    Browser[Browser / Bootstrap / SVG] --> Razor[Blazor components]
-    Razor --> State[Scoped AppState]
-    State --> Service[Application TrackerService]
-    Service --> Domain[Domain rules / StreakCalculator]
-    Service --> Port[IRoutineRepository]
-    Port --> Repo[Infrastructure RoutineRepository]
-    Repo --> EF[EF Core / DbContextFactory]
-    EF --> DB[(SQLite + Identity)]
-    Service --> Notify[IProgressNotifier]
-    Notify --> Hub[SignalR hub]
-    Hub --> JS[Browser invalidation event]
-    JS --> State
-    Identity[Identity cookie + security stamp] --> Razor
-    Identity --> Service
-```
-
-Зависимости проектов направлены внутрь: `Domain ← Application ← Infrastructure`, а `Web` является composition root и ссылается на Application/Infrastructure. Domain не зависит от EF или Blazor. Сервисы используют интерфейсы и DTO; репозиторий возвращает агрегаты только Application, UI получает DTO.
-
-`EditForm → EventCallback → AppState.MutateAsync → TrackerService → Repository → SaveChangesAsync → SignalR → AppState.RefreshAsync → Changed → StateHasChanged`.
-
-Контейнер состояния сериализует обновления с `SemaphoreSlim`; ошибки сохраняют последнюю успешную модель. Подписки компонентов и JS-ссылки удаляются при уничтожении; каждый запрос репозитория создаёт и освобождает свой контекст. Для Identity зарегистрирован отдельный scoped-контекст, а серверная проверка текущего пользователя читает свежие данные через фабрику.
-
-Подробные UML и схема: [ARCHITECTURE.md](docs/ARCHITECTURE.md), [DATABASE.md](docs/DATABASE.md).
-
-## Установка и запуск
-
-### Требования
-
-Установите **актуальный доступный .NET 8 SDK** с https://dotnet.microsoft.com/download/dotnet/8.0. Команда `dotnet --info` должна показывать SDK 8.0.x. `global.json` разрешает актуальный feature band 8.0. ОС: Windows, macOS или Linux. При первом restore нужен доступ к NuGet.
-
-### Windows, macOS и Linux
-
-Распакуйте архив, откройте терминал в каталоге с `HabitFlow.sln`:
+Extract the project and open a terminal in the folder containing `HabitFlow.sln`:
 
 ```sh
 dotnet restore HabitFlow.sln
-dotnet build HabitFlow.sln --no-restore
-dotnet test HabitFlow.sln --no-build
 dotnet run --project src/HabitFlow.Web
 ```
 
-Откройте **http://localhost:5080**. Профиль `Properties/launchSettings.json` включает Development. На первом старте автоматически применится `InitialCreate` и будут созданы демонстрационные пользователи, 15 программ и несколько сотен записей за последние 42 дня. Повторный старт не дублирует данные. База: `src/HabitFlow.Web/App_Data/habitflow.db`.
+Open **http://localhost:5080**. Keep the terminal running while using the app. Press Ctrl+C to stop it.
 
-Для другого порта:
+The included launch profile selects Development. On the first run, EF Core applies the migrations and creates demo accounts, routines and activity history. SQLite runs inside the application, so there is no separate database server to install.
 
-```sh
-dotnet run --project src/HabitFlow.Web --urls http://localhost:5090
-```
+### Visual Studio
 
-IDE: откройте `HabitFlow.sln` в Visual Studio 2022 с ASP.NET workload, Rider или VS Code с C# Dev Kit; запускаемый проект — `HabitFlow.Web`. Node.js нужен только для E2E-тестов.
+Open `HabitFlow.sln`, set `HabitFlow.Web` as the startup project and select the `HabitFlow` launch profile. Run with F5 or Ctrl+F5. Install the ASP.NET and web development workload and .NET 8 SDK if prompted.
 
-### Тестовые аккаунты — только Development
+### VS Code
 
-| Роль | Email | Пароль |
+Use **File → Open Folder** to open the folder containing the solution, then run the commands above in **Terminal → New Terminal**. Microsoft's C# Dev Kit extension provides C# editing and debugging support. Live Server is not used.
+
+## Demo accounts
+
+These accounts are created in **Development only**. Their display names are the names shown in the app and leaderboard.
+
+| Display name | Email / login | Role |
 |---|---|---|
-| Admin + User | ayan@habitflow.local | Demo!Pass123 |
-| User | arman@habitflow.local | Demo!Pass123 |
-| User | aruzhan@habitflow.local | Demo!Pass123 |
-| User | dias@habitflow.local | Demo!Pass123 |
-| User | aigerim@habitflow.local | Demo!Pass123 |
+| Ayan Sapar | `ayan@habitflow.local` | Admin and User |
+| Arman Nurlan | `arman@habitflow.local` | User |
+| Aruzhan Serik | `aruzhan@habitflow.local` | User |
+| Dias Alikhan | `dias@habitflow.local` | User |
+| Aigerim Bolat | `aigerim@habitflow.local` | User |
 
-Регистрация создаёт только роль `User`, профиль по умолчанию закрыт. Клиент не может назначить себе Admin.
+All demo accounts use the password **`Demo!Pass123`**. The `.local` addresses are test logins, not working email inboxes.
 
-## Руководство пользователя
+New registrations receive the User role and start with a private profile. Users can change their display name, weekly target and leaderboard visibility in Settings.
 
-1. **Overview:** оцените сегодняшние программы, лучшую текущую серию, минуты за семь дней и очки месяца. Карточка программы содержит описание, расписание и раскрываемые упражнения.
-2. **My routines → New routine:** введите название, описание, тип, минуты и дни недели. При необходимости добавьте до 20 упражнений с подходами и повторениями. Расписание после первой отметки фиксируется, чтобы история серий не менялась задним числом.
-3. **Check in:** запишите дату, время и личную заметку. Допустим прошедший запланированный день не старше года и не раньше даты создания программы. За один день принимается одна отметка на программу.
-4. **Progress:** меняйте диапазон графика 7/14/28 дней, раскрывайте таблицу, смотрите лучшие серии и журнал. `Log an entry` позволяет добавить пропущенную запись; `Undo` удаляет ошибочную отметку и пересчитывает очки/серии.
-5. **Archive / Restore:** скрывайте ненужные программы без удаления истории. Архивные программы не принимают новые отметки.
-6. **Settings:** измените отображаемое имя и включите участие в рейтинге. Другим видны только имя и месячные итоги; email и заметки в рейтинг не попадают.
-7. **Community:** 10 очков за каждую отметку, одинаковый вес у коротких и длинных занятий. Итоги сбрасываются с началом месяца по времени Астаны (UTC+5); сохранённая история остаётся. Рейтинг ограничен 100 участниками, ничьи упорядочиваются по имени, затем ID.
-8. **Administration:** администратор видит до 500 аккаунтов и может временно приостановить/восстановить доступ обычного пользователя. Самоблокировка и блокировка администраторов запрещены сервером. При блокировке меняется security stamp; старый сеанс потребует повторного входа после восстановления.
-9. **Live:** откройте две сессии одного пользователя; запись в одной обновит другую. При отключении SignalR показывается статус переподключения, а при потере circuit — ссылка перезагрузки.
+When upgrading an older Development database, the seeder changes the original demo email addresses to the ones above while keeping the account IDs and their activity. Sign in again using the updated email if an old session expires. Custom display names are preserved.
 
-**Правила серий:** учитываются только запланированные дни начиная с создания программы. Незавершённый сегодняшний день ещё не разрывает вчерашнюю серию. Пропущенный более ранний запланированный день разрывает. Лучший результат рассчитывается по всей истории. Все даты используют время Астаны (UTC+5).
+## Using the app
 
-## Тесты
+1. Open **My routines → New routine**. Choose a type, duration and days of the week. Exercises are optional.
+2. Select **Check in** after completing a routine. A routine accepts one check-in per scheduled day. Backdated entries are allowed within the last year, starting from the routine's creation date.
+3. Open **Progress** for the journal, charts and best streaks. Use **Undo** to remove an incorrect check-in.
+4. Set **Weekly check-in goal** in Settings. Changing the target updates the current week's progress.
+5. Enable **Join the community leaderboard** to share your display name and monthly totals with signed-in users.
 
-```sh
-dotnet test HabitFlow.sln
-dotnet test HabitFlow.sln --collect:"XPlat Code Coverage" --results-directory TestResults
+Each check-in earns 10 leaderboard points. Entering more minutes does not earn extra points. Milestones are calculated from the current history; undoing a check-in can lock a milestone again. Archived routines keep their history and earned points but cannot receive new entries until restored.
+
+A routine's schedule and type become fixed after its first check-in. This prevents later edits from changing the meaning of earlier streaks. An unfinished today does not break yesterday's streak, but a missed earlier scheduled day does.
+
+For a short demo, create an account, set its weekly goal to 1 and complete a routine. The dashboard reaches 100% and unlocks First step. Undo the entry to show both values being recalculated.
+
+## Stack and design choices
+
+| Part | Choice | Reason |
+|---|---|---|
+| UI | Blazor Interactive Server | C# components, server-side access checks and a small browser client. It requires a live connection for interactions. |
+| Styling | Bootstrap 5 and local CSS | Responsive forms and layouts, with local assets and a custom light/dark theme. |
+| Storage | EF Core 8 with SQLite | Runs on Windows, macOS and Linux without setting up a database service. PostgreSQL would be a better fit for many concurrent writers. |
+| Accounts | ASP.NET Core Identity | Password hashing, roles, lockout and cookie authentication provided by the framework. |
+| Updates | SignalR | Connected clients reload their authorized view after a change rather than polling on a timer. |
+| Charts | Razor and SVG | Enough for the activity charts used here; exact values are also available in a table. |
+| Tests | xUnit, bUnit and Playwright | Separate checks for service rules, storage, components and browser interactions. |
+
+.NET 8 is the target required by the project. For deployment after its support end date, plan an upgrade to a supported .NET release.
+
+## Project structure
+
+```text
+src/
+  HabitFlow.Domain/          Entities, Astana calendar and streak calculation
+  HabitFlow.Application/     DTOs, interfaces, validation and progress calculations
+  HabitFlow.Infrastructure/  Identity, EF Core, repositories, migrations and seeding
+  HabitFlow.Web/             Blazor pages, components, state and SignalR
+tests/
+  HabitFlow.Tests/           xUnit, SQLite integration, HTTP and bUnit tests
+  e2e/                      Playwright browser tests
+docs/                       Database, architecture, QA and team notes
 ```
 
-Сервисные тесты используют настоящую SQLite в памяти с применением миграции, не EF InMemory. HTTP-тесты запускают приложение в TestServer с отдельным временным файлом БД. Сценарии и результаты перечислены в [QA.md](docs/QA.md).
+Dependencies point towards the core: Domain has no EF Core or Blazor dependency; Application defines the interfaces; Infrastructure implements storage. Web wires the services together through dependency injection.
 
-Для E2E сначала запустите приложение в Development на порту 5080, затем в другом терминале:
+```mermaid
+flowchart LR
+    UI[Blazor components] --> State[Scoped AppState]
+    State --> App[Application services]
+    App --> Rules[Domain rules]
+    App --> Repo[Repository interface]
+    Repo --> EF[EF Core repository]
+    EF --> DB[(SQLite)]
+    App --> Hub[SignalR notification]
+    Hub --> UI
+```
+
+A form submits a DTO through an EventCallback. AppState serializes operations and raises its Changed event when data is refreshed. Services check the current user and validate the operation before the repository writes it. A SignalR event then tells connected clients to refresh; it contains no private notes or routine details.
+
+Reusable components include RoutineCard, ProgressChart, WeeklyGoalCard, AchievementsPanel and ModalShell. The activity journal uses Virtualize. Repository operations create and dispose their own DbContext, and components remove subscriptions when disposed.
+
+## Database
+
+The local database is stored at:
+
+```text
+src/HabitFlow.Web/App_Data/habitflow.db
+```
+
+```mermaid
+erDiagram
+    AspNetUsers ||--o{ Routines : owns
+    Routines ||--o{ RoutineSteps : contains
+    Routines ||--o{ CheckIns : records
+    AspNetUsers ||--o{ AspNetUserRoles : has
+    AspNetRoles ||--o{ AspNetUserRoles : assigns
+```
+
+Identity stores the accounts and roles. Routines contain the schedule and exercise steps; CheckIns store dates, minutes and notes. A unique index on `(RoutineId, Date)` prevents duplicate daily entries. An integer revision detects competing edits. WeeklyGoal is stored on the user; weekly totals, streaks and milestones are calculated from the activity history.
+
+Migrations run on startup. `InitialCreate` sets up the original schema and `AddWeeklyGoal` adds the weekly target, defaulting to 5 for existing accounts.
+
+Before replacing a local installation, back up `App_Data`. It contains the database and Data Protection keys. Do not commit this directory to GitHub.
+
+## Tests
+
+```sh
+dotnet build HabitFlow.sln
+dotnet test HabitFlow.sln
+dotnet test HabitFlow.sln --collect:"XPlat Code Coverage"
+```
+
+The .NET suite contains 49 test cases covering rules, real SQLite storage, authorization, state and component behavior. The browser tests also cover registration, check-ins, undo, visibility, weekly goals and live updates. Version-specific results and limits are recorded in [docs/QA.md](docs/QA.md); older coverage figures there belong to their recorded version.
+
+To run the browser tests, start the app in Development first. In a second terminal:
 
 ```sh
 cd tests/e2e
@@ -164,72 +162,33 @@ npx playwright install chromium firefox
 npm test
 ```
 
-Linux при нехватке системных библиотек: `npx playwright install --with-deps chromium firefox`. Альтернативный порт: задайте переменную `HABITFLOW_URL`. Уже установленный Chromium можно использовать через `CHROMIUM_PATH`. В Windows PowerShell: `$env:HABITFLOW_URL="http://localhost:5090"`; в bash: `export HABITFLOW_URL=http://localhost:5090`.
+The default test URL is `http://127.0.0.1:5080`. Set `HABITFLOW_URL` to use another address. Use a separate Development database: the tests create accounts and routines.
 
-E2E изменяют только Development-данные: создают уникальные тестовые аккаунты и программы. Выполняйте их на отдельной локальной базе. Отчёт: `tests/e2e/playwright-report/index.html`. Проверки устройств эмулируют viewport и ввод; это не проверка на физических телефонах.
+## Working together
 
-## Миграции и разработка
+The backend work is grouped under Domain, Application and Infrastructure. The frontend work is under Web, with tests and documentation alongside it. Each contributor should use their own GitHub account and review the files included in each commit.
+
+If both contributors work directly on `main`, pull before starting:
 
 ```sh
-dotnet tool restore
-dotnet ef migrations add DescribeChange --project src/HabitFlow.Infrastructure
-dotnet ef migrations list --project src/HabitFlow.Infrastructure
+git switch main
+git pull origin main
 ```
 
-`DesignTimeDbContextFactory` предназначена только для инструментов; runtime получает строку подключения из конфигурации. Миграции выполняются на старте приложения, `EnsureCreated` в runtime не используется. Структура БД, индексы и ограничения описаны в `docs/DATABASE.md`.
+Commit the files you worked on, then push to `main`. Coordinate edits to shared files before working on them. The `.gitignore` excludes local databases, keys, build output and node_modules.
 
-## Production и эксплуатация
+## Deployment notes
+
+Publish the server application with:
 
 ```sh
 dotnet publish src/HabitFlow.Web -c Release -o publish
 ```
 
-Запускайте из каталога `publish`, укажите `ASPNETCORE_ENVIRONMENT=Production`, `AllowedHosts` с реальным доменом, HTTPS-сертификат Kestrel и постоянный доступный на запись каталог `App_Data`. Настройка через переменные среды поддерживает двойное подчёркивание, например `ConnectionStrings__DefaultConnection`.
+Use a host that supports ASP.NET Core and WebSockets, with HTTPS and persistent writable storage. GitHub Pages cannot run the Interactive Server backend.
 
-Первый администратор создаётся при наличии `Bootstrap__AdminEmail` и `Bootstrap__AdminPassword` в защищённой конфигурации процесса. Пароль должен удовлетворять политике Identity; значения не храните в исходниках. После создания удалите bootstrap-пароль из окружения. Если email уже зарегистрирован, startup не повышает его роль. Development-аккаунты в Production автоматически не создаются; используйте отдельную production-БД.
+Set `ASPNETCORE_ENVIRONMENT=Production`, configure the public host in `AllowedHosts`, and provide the server's HTTPS configuration. Development accounts are not created in Production. A first administrator can be created through `Bootstrap__AdminEmail` and `Bootstrap__AdminPassword` in protected environment configuration; remove the bootstrap password after setup.
 
-Пример HTTPS-запуска после настройки переменных `ASPNETCORE_Kestrel__Certificates__Default__Path` и `ASPNETCORE_Kestrel__Certificates__Default__Password`:
+This version is intended for one application instance. Multiple servers would require shared Data Protection keys, SignalR scale-out and a database suitable for concurrent writers. The app loads a user's full activity history to calculate lifetime streaks; larger installations should add paginated history and stored aggregates. Email delivery, password recovery, MFA and offline editing are outside the current scope.
 
-```sh
-dotnet HabitFlow.Web.dll --urls https://0.0.0.0:5443
-```
-
-Production-cookie: Secure, HttpOnly, SameSite=Lax, срок 8 часов. Формы защищены antiforgery; endpoints входа/регистрации ограничены по частоте; 5 неверных паролей вызывают блокировку на 15 минут. Запросы приложений повторно проверяют владельца, блокировку и security stamp; состояние circuit перепроверяется каждую минуту. `ErrorBoundary` скрывает исключения UI, production middleware обрабатывает серверные ошибки. Сохранённые записи не отменяются из-за сбоя доставки SignalR.
-
-Сохраняйте резервные копии SQLite и ключей Data Protection (`App_Data/keys`). Для согласованного копирования SQLite остановите приложение или используйте SQLite backup API; не копируйте только основной файл при активном WAL. Ключи локально сохраняются как файлы; защищайте права каталога и используйте доступное хосту шифрование хранилища. Перед изменением схемы создайте backup. Приложение рассчитано на один экземпляр: одновременно запускать несколько автоматических миграторов нельзя. EF-миграции при большом развёртывании следует выполнять отдельным шагом релиза.
-
-**Границы масштабирования:** SQLite — файловая БД с сериализацией записей; Blazor Server хранит состояние circuit в памяти. Для нескольких серверов понадобятся серверная БД, общие ключи Data Protection, SignalR scale-out и affinity. UI виртуализирует журнал, рейтинг агрегируется и ограничивается SQL, число программ ограничено 100 на workspace. Полная личная история загружается на один workspace для точного расчёта lifetime-серий: при многолетних больших объёмах следует вынести агрегаты/историю в постраничные запросы. Лимит программ проверяется приложением и не является строгой конкурентной квотой БД.
-
-В заданный объём не входят отправка email, восстановление пароля, MFA и offline-редактирование. Их необходимо добавить перед использованием в сценарии, который требует этих функций. Готовность конкретного хостинга, резервного копирования и эксплуатационной политики должна проверяться при развёртывании; локальные тесты не являются аудитом инфраструктуры.
-
-## Материалы для университета
-
-- [Соответствие 20 критериям](docs/RUBRIC.md)
-- [Архитектура и UML](docs/ARCHITECTURE.md)
-- [Схема базы данных](docs/DATABASE.md)
-- [План защиты на 15–20 минут](docs/DEFENSE.md)
-- [Проверки и подтверждённые результаты](docs/QA.md)
-
-Входной DOCX использован как справочная рубрика. Участники, ФИО и организационные сведения должны быть добавлены авторами перед защитой; приложение не содержит вымышленных сведений об исполнителях.
-
-## Обновление: Астана, тема и командная работа
-
-Демонстрационные имена: Ayan Sapar, Arman Nurlan, Aruzhan Serik, Dias Alikhan, Aigerim Bolat. Email/пароли тестовых аккаунтов сохранены для совместимости. На старой Development-БД заменяются только исходные английские демонстрационные имена; пользовательские имена не перезаписываются.
-
-Календарь отметок, серий и рейтинга использует Astana UTC+5, независимо от часов сервера. Ранее сохранённые календарные даты не сдвигаются. Security timestamps и блокировки Identity остаются в UTC.
-
-Кнопка Light / Dark в верхней панели переключает тему; выбор сохраняется в браузере и применяется также к странице входа.
-
-Инструкция для двух участников: **docs/TEAM_GITHUB.md**. Загрузка в GitHub автоматически не выполнялась.
-
-При обновлении своей копии сохраните папку src/HabitFlow.Web/App_Data: там база и ключи. Замените исходники, остановите старый процесс и запустите проект заново. Для стилей при необходимости выполните Ctrl+F5.
-
-## Цели и достижения
-
-Settings → Weekly check-in goal задаёт цель от 1 до 100 отметок. Она хранится в AspNetUsers.WeeklyGoal. Неделя — понедельник–воскресенье по Астане; при смене цели текущий прогресс пересчитывается, а с новым понедельником отсчёт начинается заново. Отметки привычек и тренировок учитываются одинаково.
-
-Overview и Progress показывают недельный прогресс, остаток до цели, активные дни и минуты. Достижения: первая отметка, 10 отметок, лучшая серия 7 запланированных дней, 300 минут за всё время. Награды вычисляются по текущей личной истории, включая архивные программы; Undo может снова заблокировать награду. Дополнительные очки за награды не начисляются.
-
-AddWeeklyGoal — дополнительная EF-миграция: существующие аккаунты получают цель 5, записи пользователя сохраняются. Перед обновлением сохраняйте резервную копию App_Data.
-
-Для демонстрации: зарегистрировать аккаунт, установить цель 1, выполнить программу — увидеть 100% и First step, отменить отметку — увидеть пересчёт. Правила находятся в ProgressInsights.cs; хранение — в AppUser/RoutineRepository; UI — WeeklyGoalCard/AchievementsPanel; тесты — InsightsTests и goals.spec.ts.
+Further architecture, database and team notes are available in `docs`; most of those supporting documents are in Russian.
