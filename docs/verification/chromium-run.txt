@@ -1,0 +1,38 @@
+
+> test
+> playwright test
+
+
+Running 16 tests using 1 worker
+
+(node:8342) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium-desktop] › specs/tracker.spec.ts:33:5 › registration, routine builder, check-in, history, privacy, archive and restore (9.8s)
+  ✓   2 [chromium-desktop] › specs/tracker.spec.ts:60:5 › real-time synchronization refreshes a second authenticated browser session (11.4s)
+  ✓   3 [chromium-desktop] › specs/tracker.spec.ts:74:5 › role-based navigation and administrator suspension (6.0s)
+  ✓   4 [chromium-desktop] › specs/tracker.spec.ts:86:5 › responsive overview and accessibility (3.7s)
+(node:8834) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [chromium-tablet] › specs/tracker.spec.ts:33:5 › registration, routine builder, check-in, history, privacy, archive and restore (6.5s)
+  ✓   6 [chromium-tablet] › specs/tracker.spec.ts:60:5 › real-time synchronization refreshes a second authenticated browser session (6.2s)
+  ✓   7 [chromium-tablet] › specs/tracker.spec.ts:74:5 › role-based navigation and administrator suspension (4.9s)
+  ✓   8 [chromium-tablet] › specs/tracker.spec.ts:86:5 › responsive overview and accessibility (3.9s)
+(node:9225) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [chromium-mobile] › specs/tracker.spec.ts:33:5 › registration, routine builder, check-in, history, privacy, archive and restore (4.5s)
+  ✓  10 [chromium-mobile] › specs/tracker.spec.ts:60:5 › real-time synchronization refreshes a second authenticated browser session (5.7s)
+  ✓  11 [chromium-mobile] › specs/tracker.spec.ts:74:5 › role-based navigation and administrator suspension (4.6s)
+  ✓  12 [chromium-mobile] › specs/tracker.spec.ts:86:5 › responsive overview and accessibility (5.7s)
+(node:9649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  13 [firefox-desktop] › specs/tracker.spec.ts:33:5 › registration, routine builder, check-in, history, privacy, archive and restore (6ms)
+
+  1 interrupted
+    [firefox-desktop] › specs/tracker.spec.ts:33:5 › registration, routine builder, check-in, history, privacy, archive and restore 
+  3 did not run
+  12 passed (2.9m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

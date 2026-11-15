@@ -1,0 +1,5 @@
+  HabitFlow.Domain -> /workspace/habitflow/src/HabitFlow.Domain/bin/Release/net8.0/HabitFlow.Domain.dll
+  HabitFlow.Application -> /workspace/habitflow/src/HabitFlow.Application/bin/Release/net8.0/HabitFlow.Application.dll
+  HabitFlow.Infrastructure -> /workspace/habitflow/src/HabitFlow.Infrastructure/bin/Release/net8.0/HabitFlow.Infrastructure.dll
+  HabitFlow.Web -> /workspace/habitflow/src/HabitFlow.Web/bin/Release/net8.0/HabitFlow.Web.dll
+  HabitFlow.Web -> /workspace/work/publish/

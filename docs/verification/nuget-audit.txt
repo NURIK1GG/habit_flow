@@ -1,0 +1,9 @@
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `HabitFlow.Application` has no vulnerable packages given the current sources.
+The given project `HabitFlow.Domain` has no vulnerable packages given the current sources.
+The given project `HabitFlow.Infrastructure` has no vulnerable packages given the current sources.
+The given project `HabitFlow.Web` has no vulnerable packages given the current sources.
+The given project `HabitFlow.Tests` has no vulnerable packages given the current sources.

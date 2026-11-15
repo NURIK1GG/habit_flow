@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="0bb80613-be09-4bd9-a318-4f9e9961ffd3" name="@48d529663531 2026-11-14 21:40:14" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-11-14T21:40:14.3284540+05:00" queuing="2026-11-14T21:40:14.3284541+05:00" start="2026-11-14T21:40:05.4664911+05:00" finish="2026-11-14T21:40:18.1212339+05:00" />
+  <TestSettings name="default" id="b056f6d7-3e37-4a7c-b995-cb170493f912">
+    <Deployment runDeploymentRoot="_48d529663531_2026-11-14_21_40_14" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="1fea5b9b-43ff-4cc5-846b-5edcca6e133f" testId="a151f82a-63ef-d06c-1458-0bf1bf339478" testName="HabitFlow.Tests.SecurityTests.AdminRoleCheckedInDatabase" computerName="48d529663531" duration="00:00:00.0783068" startTime="2026-11-14T21:40:14.7699943+05:00" endTime="2026-11-14T21:40:14.7699945+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1fea5b9b-43ff-4cc5-846b-5edcca6e133f" />
+    <UnitTestResult executionId="90ccc469-6ed9-41e3-9ae3-7831606594af" testId="30794a5a-0d0e-6b39-46a7-01c117e5935b" testName="HabitFlow.Tests.TrackerTests.NestedExerciseValidationRunsOnServer" computerName="48d529663531" duration="00:00:02.2046408" startTime="2026-11-14T21:40:13.9732582+05:00" endTime="2026-11-14T21:40:13.9732837+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90ccc469-6ed9-41e3-9ae3-7831606594af" />
+    <UnitTestResult executionId="ea371582-65f0-42a5-b6c8-06d2f99df8b1" testId="99a6e6e0-3058-5d3c-81d0-e2d8a33a4afd" testName="HabitFlow.Tests.TrackerTests.ArchivedRoutineRejectsCheckInsAndCanBeRestored" computerName="48d529663531" duration="00:00:00.0712953" startTime="2026-11-14T21:40:14.3434889+05:00" endTime="2026-11-14T21:40:14.3434890+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea371582-65f0-42a5-b6c8-06d2f99df8b1" />
+    <UnitTestResult executionId="b47a07af-2e55-4684-a36f-70fbbbf0ccf5" testId="864e85e7-fd5a-91ec-3aa2-2613499836c3" testName="HabitFlow.Tests.TrackerTests.DatabaseMigrationCreatesExpectedTables" computerName="48d529663531" duration="00:00:00.0414553" startTime="2026-11-14T21:40:14.2717548+05:00" endTime="2026-11-14T21:40:14.2717550+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b47a07af-2e55-4684-a36f-70fbbbf0ccf5" />
+    <UnitTestResult executionId="27f95420-1b20-431b-9a89-473cdeab8062" testId="44f3e19f-6cbd-5378-7fbb-88d10fbaedd8" testName="HabitFlow.Tests.StreakTests.BestStreakRemainsAfterBreak" computerName="48d529663531" duration="00:00:00.0013584" startTime="2026-11-14T21:40:15.6219635+05:00" endTime="2026-11-14T21:40:15.6219637+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27f95420-1b20-431b-9a89-473cdeab8062" />
+    <UnitTestResult executionId="86145c54-b85f-43cb-acde-525a3551c176" testId="a08dd79c-776a-929f-7e5b-8c1f1ee00ab6" testName="HabitFlow.Tests.TrackerTests.StaleEditsAreRejected" computerName="48d529663531" duration="00:00:00.0600882" startTime="2026-11-14T21:40:14.4704507+05:00" endTime="2026-11-14T21:40:14.4704509+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="86145c54-b85f-43cb-acde-525a3551c176" />
+    <UnitTestResult executionId="c03c06d8-4452-461e-84be-59a9dd7b31e8" testId="fa3398fa-8947-5a03-bfc6-81c3028323c1" testName="HabitFlow.Tests.ComponentTests.CompletedCardDisablesDuplicateCheckIn" computerName="48d529663531" duration="00:00:00.0634336" startTime="2026-11-14T21:40:15.5489000+05:00" endTime="2026-11-14T21:40:15.5489002+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c03c06d8-4452-461e-84be-59a9dd7b31e8" />
+    <UnitTestResult executionId="54a86ab3-fce2-4413-80ba-20db2e804759" testId="5c4be6be-5fd0-1770-9a62-9d714e439453" testName="HabitFlow.Tests.TrackerTests.AnotherUserCannotReadOrMutateRoutine" computerName="48d529663531" duration="00:00:00.0385570" startTime="2026-11-14T21:40:14.5092384+05:00" endTime="2026-11-14T21:40:14.5092386+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54a86ab3-fce2-4413-80ba-20db2e804759" />
+    <UnitTestResult executionId="5d184d95-9645-45a1-ab56-50a115489ae3" testId="fb8e0669-b636-cd98-045f-a431b443fc09" testName="HabitFlow.Tests.StateTests.RefreshPublishesBusyThenLoadedState" computerName="48d529663531" duration="00:00:00.0231111" startTime="2026-11-14T21:40:16.0543668+05:00" endTime="2026-11-14T21:40:16.0543670+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d184d95-9645-45a1-ab56-50a115489ae3" />
+    <UnitTestResult executionId="eddcf59d-d085-47f9-94c1-1ca23c5b77fa" testId="f2e9e6c8-a16a-c4a3-76d3-1c55d2099f3b" testName="HabitFlow.Tests.TrackerTests.ScheduleCannotBeRewrittenAfterCompletion" computerName="48d529663531" duration="00:00:00.0389006" startTime="2026-11-14T21:40:14.6030682+05:00" endTime="2026-11-14T21:40:14.6030683+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eddcf59d-d085-47f9-94c1-1ca23c5b77fa" />
+    <UnitTestResult executionId="ec09e23f-ef38-4d31-b993-802f07b5886b" testId="832ea6bb-5ab4-389f-a486-28f04f9c198d" testName="HabitFlow.Tests.HttpTests.LoginUsesSecureHttpOnlyCookieAndUserCannotOpenAdminData" computerName="48d529663531" duration="00:00:00.0999468" startTime="2026-11-14T21:40:17.3684817+05:00" endTime="2026-11-14T21:40:17.3684819+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec09e23f-ef38-4d31-b993-802f07b5886b" />
+    <UnitTestResult executionId="920f4d2f-6c37-4384-9dc1-4e7389639cab" testId="3d4e611c-3ae8-f30e-305a-21d96c1add86" testName="HabitFlow.Tests.SeederTests.ProductionBootstrapsOnlyConfiguredAdministratorAndIsIdempotent" computerName="48d529663531" duration="00:00:04.2385866" startTime="2026-11-14T21:40:16.0096227+05:00" endTime="2026-11-14T21:40:16.0096230+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="920f4d2f-6c37-4384-9dc1-4e7389639cab" />
+    <UnitTestResult executionId="1a8833ea-c9af-40ad-b80d-c9862e31e6b0" testId="1a9e761c-74e7-c7b1-add9-b15c47e2f851" testName="HabitFlow.Tests.TrackerTests.InvalidDatesAreRejected(offset: 1)" computerName="48d529663531" duration="00:00:00.0275261" startTime="2026-11-14T21:40:14.5633324+05:00" endTime="2026-11-14T21:40:14.5633325+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a8833ea-c9af-40ad-b80d-c9862e31e6b0" />
+    <UnitTestResult executionId="7c7c05e1-63bc-4f98-86ae-625a8684a570" testId="d8ab752a-5cdc-9275-8427-f89f1dad848d" testName="HabitFlow.Tests.HttpTests.HealthRespondsAndAnonymousHubIsProtected" computerName="48d529663531" duration="00:00:00.0120492" startTime="2026-11-14T21:40:17.1468781+05:00" endTime="2026-11-14T21:40:17.1468782+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7c7c05e1-63bc-4f98-86ae-625a8684a570" />
+    <UnitTestResult executionId="54b4226d-a0d9-4d33-9d1a-76b980baeb5c" testId="a73aa8a3-1a32-197d-7390-7dcadf990084" testName="HabitFlow.Tests.HttpTests.MissingAntiforgeryTokenIsRejected" computerName="48d529663531" duration="00:00:00.0209739" startTime="2026-11-14T21:40:17.2674542+05:00" endTime="2026-11-14T21:40:17.2674545+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54b4226d-a0d9-4d33-9d1a-76b980baeb5c" />
+    <UnitTestResult executionId="7afc8875-a196-4d67-a9c5-d110994a2e04" testId="2a6cf731-ed29-8836-15b6-e9c092cee333" testName="HabitFlow.Tests.ComponentTests.LeaderboardDisplaysSelfWithoutEmailOrPrivateNotes" computerName="48d529663531" duration="00:00:00.0060633" startTime="2026-11-14T21:40:15.6196425+05:00" endTime="2026-11-14T21:40:15.6196426+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7afc8875-a196-4d67-a9c5-d110994a2e04" />
+    <UnitTestResult executionId="91372d53-be53-44ef-b6c8-b9fd8a3ce2a6" testId="60229610-0a90-bf5d-5969-7cf0cab3b8a8" testName="HabitFlow.Tests.ComponentTests.ChartPeriodControlChangesAccessibleData" computerName="48d529663531" duration="00:00:00.0318150" startTime="2026-11-14T21:40:15.6069410+05:00" endTime="2026-11-14T21:40:15.6069412+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="91372d53-be53-44ef-b6c8-b9fd8a3ce2a6" />
+    <UnitTestResult executionId="c5360e39-5575-428d-88c2-2364e55b8382" testId="d1d28ca6-e2ea-ddce-7078-354a35f7b447" testName="HabitFlow.Tests.StreakTests.RestDaysDoNotBreakStreak" computerName="48d529663531" duration="00:00:00.0006739" startTime="2026-11-14T21:40:15.6235436+05:00" endTime="2026-11-14T21:40:15.6235437+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c5360e39-5575-428d-88c2-2364e55b8382" />
+    <UnitTestResult executionId="176fb76f-f602-4bf7-b2d3-e7b53c195a7e" testId="9d0a210f-474b-c5e8-b7da-27cb3b28c69f" testName="HabitFlow.Tests.SecurityTests.RevokedStampIsRejected" computerName="48d529663531" duration="00:00:00.0246968" startTime="2026-11-14T21:40:14.8601175+05:00" endTime="2026-11-14T21:40:14.8601177+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="176fb76f-f602-4bf7-b2d3-e7b53c195a7e" />
+    <UnitTestResult executionId="abc9a8eb-5428-47c5-8bad-1e41a55f9f76" testId="4b786709-1b7b-aaf7-44af-a0af33d861c5" testName="HabitFlow.Tests.ComponentTests.RoutineFormBlocksInvalidSubmissionAndEmitsValidModel" computerName="48d529663531" duration="00:00:00.6236303" startTime="2026-11-14T21:40:15.4850561+05:00" endTime="2026-11-14T21:40:15.4850565+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="abc9a8eb-5428-47c5-8bad-1e41a55f9f76" />
+    <UnitTestResult executionId="9abc5ab1-9fb4-4712-87ef-bc9c0194a270" testId="0532a31f-9fd4-44d5-2abb-30b42b11b380" testName="HabitFlow.Tests.TrackerTests.ForeignUserCannotUndoEntry" computerName="48d529663531" duration="00:00:00.2575401" startTime="2026-11-14T21:40:14.2300866+05:00" endTime="2026-11-14T21:40:14.2300868+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9abc5ab1-9fb4-4712-87ef-bc9c0194a270" />
+    <UnitTestResult executionId="56cc6c1b-4451-4bba-9d83-a184c63a0e60" testId="a4db7522-6bbc-b28f-34e8-0ade0c96fc96" testName="HabitFlow.Tests.TrackerTests.CreateCheckInAndUndoRecalculatePointsAndStreaks" computerName="48d529663531" duration="00:00:00.0664121" startTime="2026-11-14T21:40:14.4101692+05:00" endTime="2026-11-14T21:40:14.4101694+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="56cc6c1b-4451-4bba-9d83-a184c63a0e60" />
+    <UnitTestResult executionId="f557dd54-d25a-43b8-af6e-0260bef16f76" testId="6a931b51-c729-f08e-a04c-0582b17d8ca3" testName="HabitFlow.Tests.StateTests.DisposedStateDoesNotLoad" computerName="48d529663531" duration="00:00:00.0037062" startTime="2026-11-14T21:40:16.0185495+05:00" endTime="2026-11-14T21:40:16.0185499+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f557dd54-d25a-43b8-af6e-0260bef16f76" />
+    <UnitTestResult executionId="35baa7bc-f044-4e04-9bb4-3e81ffe53e36" testId="7ac943b3-c8d8-af29-5aa5-2dea83289132" testName="HabitFlow.Tests.HttpTests.WrongPasswordDoesNotIssueAuthenticationCookie" computerName="48d529663531" duration="00:00:00.0979762" startTime="2026-11-14T21:40:17.2457977+05:00" endTime="2026-11-14T21:40:17.2457980+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35baa7bc-f044-4e04-9bb4-3e81ffe53e36" />
+    <UnitTestResult executionId="15f5626e-1236-4b86-a5d9-9b104a223b5f" testId="031568e2-89dc-a352-a7ff-dc840d8f3b1e" testName="HabitFlow.Tests.StreakTests.MissingYesterdayBreaksStreak" computerName="48d529663531" duration="00:00:00.0004328" startTime="2026-11-14T21:40:15.6252195+05:00" endTime="2026-11-14T21:40:15.6252196+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="15f5626e-1236-4b86-a5d9-9b104a223b5f" />
+    <UnitTestResult executionId="2acaeaee-284a-43dc-864f-ff479da7b105" testId="8dd7526c-1c5c-7ca7-0ec8-fabc5738f039" testName="HabitFlow.Tests.StateTests.MutationRefreshesAndValidationPreservesLastSnapshot" computerName="48d529663531" duration="00:00:00.0092332" startTime="2026-11-14T21:40:16.0307517+05:00" endTime="2026-11-14T21:40:16.0307520+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2acaeaee-284a-43dc-864f-ff479da7b105" />
+    <UnitTestResult executionId="542eea33-184b-45ed-825d-fbeb80c4b4e2" testId="ad18830a-1288-4440-ffb0-05d5966d20e3" testName="HabitFlow.Tests.StreakTests.UnfinishedTodayPreservesYesterdayStreak" computerName="48d529663531" duration="00:00:00.0005708" startTime="2026-11-14T21:40:15.6266850+05:00" endTime="2026-11-14T21:40:15.6266851+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="542eea33-184b-45ed-825d-fbeb80c4b4e2" />
+    <UnitTestResult executionId="9a801d91-7cce-4990-ab03-cb1f056a9c30" testId="dd7075a2-6eb0-d676-ab5c-a05f8323fc2c" testName="HabitFlow.Tests.TrackerTests.DuplicateDayIsRejectedBySqliteUniqueIndex" computerName="48d529663531" duration="00:00:00.0433755" startTime="2026-11-14T21:40:14.6467580+05:00" endTime="2026-11-14T21:40:14.6467581+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9a801d91-7cce-4990-ab03-cb1f056a9c30" />
+    <UnitTestResult executionId="1a2e1bcf-3471-465e-9319-4d4444ee0f1b" testId="83bce567-c9e1-314b-f27e-cb571ca3b35c" testName="HabitFlow.Tests.ComponentTests.ToastDismissButtonClearsNotification" computerName="48d529663531" duration="00:00:00.0062755" startTime="2026-11-14T21:40:15.6133950+05:00" endTime="2026-11-14T21:40:15.6133951+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a2e1bcf-3471-465e-9319-4d4444ee0f1b" />
+    <UnitTestResult executionId="777c4a7a-dc8e-46df-a4e6-5140e88176ad" testId="2bf58a6b-e324-c6f5-3401-51b171e4651b" testName="HabitFlow.Tests.StateTests.ConcurrentRefreshesAreSerialized" computerName="48d529663531" duration="00:00:00.0574052" startTime="2026-11-14T21:40:16.1122624+05:00" endTime="2026-11-14T21:40:16.1122627+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="777c4a7a-dc8e-46df-a4e6-5140e88176ad" />
+    <UnitTestResult executionId="d12d690a-2d2a-47b7-b1bb-849097e8491f" testId="1d69fef0-4426-4f8a-7ad5-cc2f87433126" testName="HabitFlow.Tests.StateTests.ToastNotifiesAndCanBeDismissed" computerName="48d529663531" duration="00:00:00.0005676" startTime="2026-11-14T21:40:16.0316437+05:00" endTime="2026-11-14T21:40:16.0316438+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d12d690a-2d2a-47b7-b1bb-849097e8491f" />
+    <UnitTestResult executionId="43aad07f-da8b-4546-aed8-d7547fbe8677" testId="6218b52d-cb86-0c25-a374-4b428f42cb3b" testName="HabitFlow.Tests.TrackerTests.PrivateProfilesAreExcludedFromLeaderboard" computerName="48d529663531" duration="00:00:00.0403891" startTime="2026-11-14T21:40:14.6873807+05:00" endTime="2026-11-14T21:40:14.6873808+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43aad07f-da8b-4546-aed8-d7547fbe8677" />
+    <UnitTestResult executionId="f9f1dcc2-d677-4a40-89b7-4093ce9a5dfe" testId="bf3ce550-8fa2-f0da-7621-8b86e4763783" testName="HabitFlow.Tests.SecurityTests.ValidPrincipalReadsFreshUser" computerName="48d529663531" duration="00:00:00.0268000" startTime="2026-11-14T21:40:14.7970319+05:00" endTime="2026-11-14T21:40:14.7970321+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f9f1dcc2-d677-4a40-89b7-4093ce9a5dfe" />
+    <UnitTestResult executionId="cc349c38-1bae-4cc1-8129-9246670fe7a5" testId="0eb14c1c-39e5-2933-0049-9a5d983b3a31" testName="HabitFlow.Tests.StreakTests.NewRoutineHasZeroStreak" computerName="48d529663531" duration="00:00:00.0003022" startTime="2026-11-14T21:40:15.6206899+05:00" endTime="2026-11-14T21:40:15.6206900+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cc349c38-1bae-4cc1-8129-9246670fe7a5" />
+    <UnitTestResult executionId="b0925511-8bb7-4048-9cae-a1b8ad3ebf03" testId="0eee134a-8913-dba4-06a1-b9f1dacc15c3" testName="HabitFlow.Tests.HttpTests.AdminCanSeeAccountAdministration" computerName="48d529663531" duration="00:00:01.5030710" startTime="2026-11-14T21:40:17.1336539+05:00" endTime="2026-11-14T21:40:17.1336542+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b0925511-8bb7-4048-9cae-a1b8ad3ebf03" />
+    <UnitTestResult executionId="24d61ba3-9a2e-4bd0-a7c5-cba5d25b7db4" testId="17748086-89ae-1928-5edf-3989b064213c" testName="HabitFlow.Tests.ComponentTests.CardRendersDataAndInvokesCallback" computerName="48d529663531" duration="00:00:00.0252573" startTime="2026-11-14T21:40:15.5749213+05:00" endTime="2026-11-14T21:40:15.5749215+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="24d61ba3-9a2e-4bd0-a7c5-cba5d25b7db4" />
+    <UnitTestResult executionId="e8c2e687-f85a-484b-85ec-56fc41791b3d" testId="3455616e-c4f6-7177-9217-f4ad18cbba9d" testName="HabitFlow.Tests.TrackerTests.InvalidDatesAreRejected(offset: -366)" computerName="48d529663531" duration="00:00:00.0262120" startTime="2026-11-14T21:40:14.5356677+05:00" endTime="2026-11-14T21:40:14.5356678+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e8c2e687-f85a-484b-85ec-56fc41791b3d" />
+    <UnitTestResult executionId="7ba08c0a-3601-4fc4-b28e-c2d78ad6293f" testId="67c34332-ab94-9025-f79e-872169ee7db3" testName="HabitFlow.Tests.SecurityTests.SuspensionIsDetectedWithoutWaitingForCircuitRevalidation" computerName="48d529663531" duration="00:00:00.0380266" startTime="2026-11-14T21:40:14.8352804+05:00" endTime="2026-11-14T21:40:14.8352806+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7ba08c0a-3601-4fc4-b28e-c2d78ad6293f" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.AnotherUserCannotReadOrMutateRoutine" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="5c4be6be-5fd0-1770-9a62-9d714e439453">
+      <Execution id="54a86ab3-fce2-4413-80ba-20db2e804759" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="AnotherUserCannotReadOrMutateRoutine" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.HttpTests.AdminCanSeeAccountAdministration" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="0eee134a-8913-dba4-06a1-b9f1dacc15c3">
+      <Execution id="b0925511-8bb7-4048-9cae-a1b8ad3ebf03" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.HttpTests" name="AdminCanSeeAccountAdministration" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.DuplicateDayIsRejectedBySqliteUniqueIndex" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="dd7075a2-6eb0-d676-ab5c-a05f8323fc2c">
+      <Execution id="9a801d91-7cce-4990-ab03-cb1f056a9c30" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="DuplicateDayIsRejectedBySqliteUniqueIndex" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.HttpTests.LoginUsesSecureHttpOnlyCookieAndUserCannotOpenAdminData" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="832ea6bb-5ab4-389f-a486-28f04f9c198d">
+      <Execution id="ec09e23f-ef38-4d31-b993-802f07b5886b" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.HttpTests" name="LoginUsesSecureHttpOnlyCookieAndUserCannotOpenAdminData" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.LeaderboardDisplaysSelfWithoutEmailOrPrivateNotes" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="2a6cf731-ed29-8836-15b6-e9c092cee333">
+      <Execution id="7afc8875-a196-4d67-a9c5-d110994a2e04" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="LeaderboardDisplaysSelfWithoutEmailOrPrivateNotes" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.CardRendersDataAndInvokesCallback" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="17748086-89ae-1928-5edf-3989b064213c">
+      <Execution id="24d61ba3-9a2e-4bd0-a7c5-cba5d25b7db4" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="CardRendersDataAndInvokesCallback" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StateTests.RefreshPublishesBusyThenLoadedState" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="fb8e0669-b636-cd98-045f-a431b443fc09">
+      <Execution id="5d184d95-9645-45a1-ab56-50a115489ae3" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StateTests" name="RefreshPublishesBusyThenLoadedState" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.DatabaseMigrationCreatesExpectedTables" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="864e85e7-fd5a-91ec-3aa2-2613499836c3">
+      <Execution id="b47a07af-2e55-4684-a36f-70fbbbf0ccf5" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="DatabaseMigrationCreatesExpectedTables" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.ToastDismissButtonClearsNotification" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="83bce567-c9e1-314b-f27e-cb571ca3b35c">
+      <Execution id="1a2e1bcf-3471-465e-9319-4d4444ee0f1b" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="ToastDismissButtonClearsNotification" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.InvalidDatesAreRejected(offset: 1)" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="1a9e761c-74e7-c7b1-add9-b15c47e2f851">
+      <Execution id="1a8833ea-c9af-40ad-b80d-c9862e31e6b0" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="InvalidDatesAreRejected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.HttpTests.MissingAntiforgeryTokenIsRejected" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="a73aa8a3-1a32-197d-7390-7dcadf990084">
+      <Execution id="54b4226d-a0d9-4d33-9d1a-76b980baeb5c" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.HttpTests" name="MissingAntiforgeryTokenIsRejected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StreakTests.UnfinishedTodayPreservesYesterdayStreak" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="ad18830a-1288-4440-ffb0-05d5966d20e3">
+      <Execution id="542eea33-184b-45ed-825d-fbeb80c4b4e2" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StreakTests" name="UnfinishedTodayPreservesYesterdayStreak" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.SecurityTests.ValidPrincipalReadsFreshUser" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="bf3ce550-8fa2-f0da-7621-8b86e4763783">
+      <Execution id="f9f1dcc2-d677-4a40-89b7-4093ce9a5dfe" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.SecurityTests" name="ValidPrincipalReadsFreshUser" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.HttpTests.HealthRespondsAndAnonymousHubIsProtected" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="d8ab752a-5cdc-9275-8427-f89f1dad848d">
+      <Execution id="7c7c05e1-63bc-4f98-86ae-625a8684a570" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.HttpTests" name="HealthRespondsAndAnonymousHubIsProtected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.InvalidDatesAreRejected(offset: -366)" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="3455616e-c4f6-7177-9217-f4ad18cbba9d">
+      <Execution id="e8c2e687-f85a-484b-85ec-56fc41791b3d" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="InvalidDatesAreRejected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.CompletedCardDisablesDuplicateCheckIn" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="fa3398fa-8947-5a03-bfc6-81c3028323c1">
+      <Execution id="c03c06d8-4452-461e-84be-59a9dd7b31e8" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="CompletedCardDisablesDuplicateCheckIn" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.ArchivedRoutineRejectsCheckInsAndCanBeRestored" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="99a6e6e0-3058-5d3c-81d0-e2d8a33a4afd">
+      <Execution id="ea371582-65f0-42a5-b6c8-06d2f99df8b1" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="ArchivedRoutineRejectsCheckInsAndCanBeRestored" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.SecurityTests.SuspensionIsDetectedWithoutWaitingForCircuitRevalidation" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="67c34332-ab94-9025-f79e-872169ee7db3">
+      <Execution id="7ba08c0a-3601-4fc4-b28e-c2d78ad6293f" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.SecurityTests" name="SuspensionIsDetectedWithoutWaitingForCircuitRevalidation" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.CreateCheckInAndUndoRecalculatePointsAndStreaks" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="a4db7522-6bbc-b28f-34e8-0ade0c96fc96">
+      <Execution id="56cc6c1b-4451-4bba-9d83-a184c63a0e60" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="CreateCheckInAndUndoRecalculatePointsAndStreaks" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StateTests.DisposedStateDoesNotLoad" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="6a931b51-c729-f08e-a04c-0582b17d8ca3">
+      <Execution id="f557dd54-d25a-43b8-af6e-0260bef16f76" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StateTests" name="DisposedStateDoesNotLoad" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.StaleEditsAreRejected" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="a08dd79c-776a-929f-7e5b-8c1f1ee00ab6">
+      <Execution id="86145c54-b85f-43cb-acde-525a3551c176" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="StaleEditsAreRejected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StreakTests.BestStreakRemainsAfterBreak" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="44f3e19f-6cbd-5378-7fbb-88d10fbaedd8">
+      <Execution id="27f95420-1b20-431b-9a89-473cdeab8062" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StreakTests" name="BestStreakRemainsAfterBreak" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.SecurityTests.RevokedStampIsRejected" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="9d0a210f-474b-c5e8-b7da-27cb3b28c69f">
+      <Execution id="176fb76f-f602-4bf7-b2d3-e7b53c195a7e" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.SecurityTests" name="RevokedStampIsRejected" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.PrivateProfilesAreExcludedFromLeaderboard" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="6218b52d-cb86-0c25-a374-4b428f42cb3b">
+      <Execution id="43aad07f-da8b-4546-aed8-d7547fbe8677" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="PrivateProfilesAreExcludedFromLeaderboard" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.NestedExerciseValidationRunsOnServer" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="30794a5a-0d0e-6b39-46a7-01c117e5935b">
+      <Execution id="90ccc469-6ed9-41e3-9ae3-7831606594af" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="NestedExerciseValidationRunsOnServer" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.SeederTests.ProductionBootstrapsOnlyConfiguredAdministratorAndIsIdempotent" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="3d4e611c-3ae8-f30e-305a-21d96c1add86">
+      <Execution id="920f4d2f-6c37-4384-9dc1-4e7389639cab" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.SeederTests" name="ProductionBootstrapsOnlyConfiguredAdministratorAndIsIdempotent" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StateTests.ConcurrentRefreshesAreSerialized" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="2bf58a6b-e324-c6f5-3401-51b171e4651b">
+      <Execution id="777c4a7a-dc8e-46df-a4e6-5140e88176ad" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StateTests" name="ConcurrentRefreshesAreSerialized" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StateTests.MutationRefreshesAndValidationPreservesLastSnapshot" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="8dd7526c-1c5c-7ca7-0ec8-fabc5738f039">
+      <Execution id="2acaeaee-284a-43dc-864f-ff479da7b105" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StateTests" name="MutationRefreshesAndValidationPreservesLastSnapshot" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StreakTests.RestDaysDoNotBreakStreak" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="d1d28ca6-e2ea-ddce-7078-354a35f7b447">
+      <Execution id="c5360e39-5575-428d-88c2-2364e55b8382" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StreakTests" name="RestDaysDoNotBreakStreak" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StreakTests.NewRoutineHasZeroStreak" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="0eb14c1c-39e5-2933-0049-9a5d983b3a31">
+      <Execution id="cc349c38-1bae-4cc1-8129-9246670fe7a5" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StreakTests" name="NewRoutineHasZeroStreak" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.ChartPeriodControlChangesAccessibleData" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="60229610-0a90-bf5d-5969-7cf0cab3b8a8">
+      <Execution id="91372d53-be53-44ef-b6c8-b9fd8a3ce2a6" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="ChartPeriodControlChangesAccessibleData" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StreakTests.MissingYesterdayBreaksStreak" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="031568e2-89dc-a352-a7ff-dc840d8f3b1e">
+      <Execution id="15f5626e-1236-4b86-a5d9-9b104a223b5f" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StreakTests" name="MissingYesterdayBreaksStreak" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.ScheduleCannotBeRewrittenAfterCompletion" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="f2e9e6c8-a16a-c4a3-76d3-1c55d2099f3b">
+      <Execution id="eddcf59d-d085-47f9-94c1-1ca23c5b77fa" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="ScheduleCannotBeRewrittenAfterCompletion" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.HttpTests.WrongPasswordDoesNotIssueAuthenticationCookie" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="7ac943b3-c8d8-af29-5aa5-2dea83289132">
+      <Execution id="35baa7bc-f044-4e04-9bb4-3e81ffe53e36" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.HttpTests" name="WrongPasswordDoesNotIssueAuthenticationCookie" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.StateTests.ToastNotifiesAndCanBeDismissed" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="1d69fef0-4426-4f8a-7ad5-cc2f87433126">
+      <Execution id="d12d690a-2d2a-47b7-b1bb-849097e8491f" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.StateTests" name="ToastNotifiesAndCanBeDismissed" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.TrackerTests.ForeignUserCannotUndoEntry" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="0532a31f-9fd4-44d5-2abb-30b42b11b380">
+      <Execution id="9abc5ab1-9fb4-4712-87ef-bc9c0194a270" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.TrackerTests" name="ForeignUserCannotUndoEntry" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.SecurityTests.AdminRoleCheckedInDatabase" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="a151f82a-63ef-d06c-1458-0bf1bf339478">
+      <Execution id="1fea5b9b-43ff-4cc5-846b-5edcca6e133f" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.SecurityTests" name="AdminRoleCheckedInDatabase" />
+    </UnitTest>
+    <UnitTest name="HabitFlow.Tests.ComponentTests.RoutineFormBlocksInvalidSubmissionAndEmitsValidModel" storage="/workspace/habitflow/tests/habitflow.tests/bin/release/net8.0/habitflow.tests.dll" id="4b786709-1b7b-aaf7-44af-a0af33d861c5">
+      <Execution id="abc9a8eb-5428-47c5-8bad-1e41a55f9f76" />
+      <TestMethod codeBase="/workspace/habitflow/tests/HabitFlow.Tests/bin/Release/net8.0/HabitFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="HabitFlow.Tests.ComponentTests" name="RoutineFormBlocksInvalidSubmissionAndEmitsValidModel" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="a151f82a-63ef-d06c-1458-0bf1bf339478" executionId="1fea5b9b-43ff-4cc5-846b-5edcca6e133f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="30794a5a-0d0e-6b39-46a7-01c117e5935b" executionId="90ccc469-6ed9-41e3-9ae3-7831606594af" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="99a6e6e0-3058-5d3c-81d0-e2d8a33a4afd" executionId="ea371582-65f0-42a5-b6c8-06d2f99df8b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="864e85e7-fd5a-91ec-3aa2-2613499836c3" executionId="b47a07af-2e55-4684-a36f-70fbbbf0ccf5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="44f3e19f-6cbd-5378-7fbb-88d10fbaedd8" executionId="27f95420-1b20-431b-9a89-473cdeab8062" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a08dd79c-776a-929f-7e5b-8c1f1ee00ab6" executionId="86145c54-b85f-43cb-acde-525a3551c176" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa3398fa-8947-5a03-bfc6-81c3028323c1" executionId="c03c06d8-4452-461e-84be-59a9dd7b31e8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5c4be6be-5fd0-1770-9a62-9d714e439453" executionId="54a86ab3-fce2-4413-80ba-20db2e804759" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb8e0669-b636-cd98-045f-a431b443fc09" executionId="5d184d95-9645-45a1-ab56-50a115489ae3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2e9e6c8-a16a-c4a3-76d3-1c55d2099f3b" executionId="eddcf59d-d085-47f9-94c1-1ca23c5b77fa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="832ea6bb-5ab4-389f-a486-28f04f9c198d" executionId="ec09e23f-ef38-4d31-b993-802f07b5886b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d4e611c-3ae8-f30e-305a-21d96c1add86" executionId="920f4d2f-6c37-4384-9dc1-4e7389639cab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a9e761c-74e7-c7b1-add9-b15c47e2f851" executionId="1a8833ea-c9af-40ad-b80d-c9862e31e6b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d8ab752a-5cdc-9275-8427-f89f1dad848d" executionId="7c7c05e1-63bc-4f98-86ae-625a8684a570" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a73aa8a3-1a32-197d-7390-7dcadf990084" executionId="54b4226d-a0d9-4d33-9d1a-76b980baeb5c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2a6cf731-ed29-8836-15b6-e9c092cee333" executionId="7afc8875-a196-4d67-a9c5-d110994a2e04" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="60229610-0a90-bf5d-5969-7cf0cab3b8a8" executionId="91372d53-be53-44ef-b6c8-b9fd8a3ce2a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1d28ca6-e2ea-ddce-7078-354a35f7b447" executionId="c5360e39-5575-428d-88c2-2364e55b8382" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9d0a210f-474b-c5e8-b7da-27cb3b28c69f" executionId="176fb76f-f602-4bf7-b2d3-e7b53c195a7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b786709-1b7b-aaf7-44af-a0af33d861c5" executionId="abc9a8eb-5428-47c5-8bad-1e41a55f9f76" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0532a31f-9fd4-44d5-2abb-30b42b11b380" executionId="9abc5ab1-9fb4-4712-87ef-bc9c0194a270" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4db7522-6bbc-b28f-34e8-0ade0c96fc96" executionId="56cc6c1b-4451-4bba-9d83-a184c63a0e60" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6a931b51-c729-f08e-a04c-0582b17d8ca3" executionId="f557dd54-d25a-43b8-af6e-0260bef16f76" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7ac943b3-c8d8-af29-5aa5-2dea83289132" executionId="35baa7bc-f044-4e04-9bb4-3e81ffe53e36" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="031568e2-89dc-a352-a7ff-dc840d8f3b1e" executionId="15f5626e-1236-4b86-a5d9-9b104a223b5f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dd7526c-1c5c-7ca7-0ec8-fabc5738f039" executionId="2acaeaee-284a-43dc-864f-ff479da7b105" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ad18830a-1288-4440-ffb0-05d5966d20e3" executionId="542eea33-184b-45ed-825d-fbeb80c4b4e2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd7075a2-6eb0-d676-ab5c-a05f8323fc2c" executionId="9a801d91-7cce-4990-ab03-cb1f056a9c30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="83bce567-c9e1-314b-f27e-cb571ca3b35c" executionId="1a2e1bcf-3471-465e-9319-4d4444ee0f1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2bf58a6b-e324-c6f5-3401-51b171e4651b" executionId="777c4a7a-dc8e-46df-a4e6-5140e88176ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d69fef0-4426-4f8a-7ad5-cc2f87433126" executionId="d12d690a-2d2a-47b7-b1bb-849097e8491f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6218b52d-cb86-0c25-a374-4b428f42cb3b" executionId="43aad07f-da8b-4546-aed8-d7547fbe8677" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bf3ce550-8fa2-f0da-7621-8b86e4763783" executionId="f9f1dcc2-d677-4a40-89b7-4093ce9a5dfe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0eb14c1c-39e5-2933-0049-9a5d983b3a31" executionId="cc349c38-1bae-4cc1-8129-9246670fe7a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0eee134a-8913-dba4-06a1-b9f1dacc15c3" executionId="b0925511-8bb7-4048-9cae-a1b8ad3ebf03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="17748086-89ae-1928-5edf-3989b064213c" executionId="24d61ba3-9a2e-4bd0-a7c5-cba5d25b7db4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3455616e-c4f6-7177-9217-f4ad18cbba9d" executionId="e8c2e687-f85a-484b-85ec-56fc41791b3d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="67c34332-ab94-9025-f79e-872169ee7db3" executionId="7ba08c0a-3601-4fc4-b28e-c2d78ad6293f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="38" executed="38" passed="38" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 8.0.34)
+[xUnit.net 00:00:00.19]   Discovering: HabitFlow.Tests
+[xUnit.net 00:00:00.28]   Discovered:  HabitFlow.Tests
+[xUnit.net 00:00:00.29]   Starting:    HabitFlow.Tests
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20261114161124_InitialCreate'.
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20261114161124_InitialCreate'.
+info: Microsoft.EntityFrameworkCore.Migrations[20405]
+      No migrations were applied. The database is already up to date.
+[xUnit.net 00:00:05.97]   Finished:    HabitFlow.Tests
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="48d529663531" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="48d529663531/coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>

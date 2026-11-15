@@ -1,0 +1,1 @@
+PASS: theme toggle/persistence, Kazakh seed, Astana label, profile name persistence.

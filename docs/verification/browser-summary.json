@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-14",
+  "passed": 16,
+  "cases": [
+    {
+      "project": "chromium-desktop",
+      "scenario": "specs/tracker.spec.ts:33:5 \u203a registration, routine builder, check-in, history, privacy, archive and restore",
+      "duration": "9.8s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-desktop",
+      "scenario": "specs/tracker.spec.ts:60:5 \u203a real-time synchronization refreshes a second authenticated browser session",
+      "duration": "11.4s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-desktop",
+      "scenario": "specs/tracker.spec.ts:74:5 \u203a role-based navigation and administrator suspension",
+      "duration": "6.0s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-desktop",
+      "scenario": "specs/tracker.spec.ts:86:5 \u203a responsive overview and accessibility",
+      "duration": "3.7s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-tablet",
+      "scenario": "specs/tracker.spec.ts:33:5 \u203a registration, routine builder, check-in, history, privacy, archive and restore",
+      "duration": "6.5s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-tablet",
+      "scenario": "specs/tracker.spec.ts:60:5 \u203a real-time synchronization refreshes a second authenticated browser session",
+      "duration": "6.2s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-tablet",
+      "scenario": "specs/tracker.spec.ts:74:5 \u203a role-based navigation and administrator suspension",
+      "duration": "4.9s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-tablet",
+      "scenario": "specs/tracker.spec.ts:86:5 \u203a responsive overview and accessibility",
+      "duration": "3.9s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-mobile",
+      "scenario": "specs/tracker.spec.ts:33:5 \u203a registration, routine builder, check-in, history, privacy, archive and restore",
+      "duration": "4.5s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-mobile",
+      "scenario": "specs/tracker.spec.ts:60:5 \u203a real-time synchronization refreshes a second authenticated browser session",
+      "duration": "5.7s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-mobile",
+      "scenario": "specs/tracker.spec.ts:74:5 \u203a role-based navigation and administrator suspension",
+      "duration": "4.6s",
+      "status": "passed"
+    },
+    {
+      "project": "chromium-mobile",
+      "scenario": "specs/tracker.spec.ts:86:5 \u203a responsive overview and accessibility",
+      "duration": "5.7s",
+      "status": "passed"
+    },
+    {
+      "project": "firefox-desktop",
+      "scenario": "specs/tracker.spec.ts:33:5 \u203a registration, routine builder, check-in, history, privacy, archive and restore",
+      "duration": "7.6s",
+      "status": "passed"
+    },
+    {
+      "project": "firefox-desktop",
+      "scenario": "specs/tracker.spec.ts:60:5 \u203a real-time synchronization refreshes a second authenticated browser session",
+      "duration": "7.0s",
+      "status": "passed"
+    },
+    {
+      "project": "firefox-desktop",
+      "scenario": "specs/tracker.spec.ts:74:5 \u203a role-based navigation and administrator suspension",
+      "duration": "5.1s",
+      "status": "passed"
+    },
+    {
+      "project": "firefox-desktop",
+      "scenario": "specs/tracker.spec.ts:86:5 \u203a responsive overview and accessibility",
+      "duration": "4.1s",
+      "status": "passed"
+    }
+  ],
+  "environment_note": "12 Chromium cases passed in sandbox. Firefox sandbox launch was interrupted; all 4 Firefox cases passed in a separate run outside the outer sandbox."
+}
