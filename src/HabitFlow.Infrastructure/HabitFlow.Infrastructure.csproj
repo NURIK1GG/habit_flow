@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../HabitFlow.Application/HabitFlow.Application.csproj"/>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.34"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.34"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.34">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
