@@ -1,0 +1,21 @@
+@inject TimeProvider Clock
+<article aria-label="@($"{Session?.DisplayName ?? "Your"} routine: {Routine.Title}")" class="routine-card @(Routine.CompletedToday ? "is-complete" : "")">
+    <div class="routine-icon @(Routine.Kind == RoutineKind.Workout ? "workout" : "habit")" aria-hidden="true"><Icon Name="@(Routine.Kind == RoutineKind.Workout ? "workout" : "habit")" Size="22" /></div>
+    <div class="routine-info"><div class="routine-heading"><h3>@Routine.Title</h3><span class="pill">@Routine.Kind</span>@if (Routine.Archived) { <span class="pill">Archived</span> }</div><p>@Routine.Description</p><div class="routine-meta"><span>@Routine.TargetMinutes min</span><span>@Schedule</span><span class="streak"><Icon Name="flame" Size="12" /> @Routine.CurrentStreak day streak</span></div>
+        @if (Routine.Steps.Count > 0) { <details class="exercise-details"><summary>@Routine.Steps.Count exercises</summary><ul>@foreach (var step in Routine.Steps) { <li>@step.Name <span>@step.Sets × @step.Repetitions</span></li> }</ul></details> }
+    </div>
+    <div class="routine-actions">
+        @if (!Routine.Archived) { <button class="btn @(Routine.CompletedToday ? "btn-completed" : "btn-outline-primary")" disabled="@(Busy || Routine.CompletedToday || !ScheduledToday)" @onclick="() => OnComplete.InvokeAsync(Routine)">@(Routine.CompletedToday ? "✓ Completed" : ScheduledToday ? "+ Check in" : "Rest day")</button> }
+        <div class="row-actions"><button class="text-button" disabled="@Busy" @onclick="() => OnEdit.InvokeAsync(Routine)" aria-label="@($"Edit {Routine.Title}")">Edit</button><button class="text-button" disabled="@Busy" @onclick="() => OnArchive.InvokeAsync(Routine)" aria-label="@($"{(Routine.Archived ? "Restore" : "Archive")} {Routine.Title}")">@(Routine.Archived ? "Restore" : "Archive")</button></div>
+    </div>
+</article>
+@code {
+    [CascadingParameter] public UiSession? Session { get; set; }
+    [Parameter, EditorRequired] public RoutineDto Routine { get; set; } = default!;
+    [Parameter] public bool Busy { get; set; }
+    [Parameter] public EventCallback<RoutineDto> OnComplete { get; set; }
+    [Parameter] public EventCallback<RoutineDto> OnEdit { get; set; }
+    [Parameter] public EventCallback<RoutineDto> OnArchive { get; set; }
+    private bool ScheduledToday => (Routine.DaysOfWeek & (1 << (int)TrackerCalendar.Now(Clock).DayOfWeek)) != 0;
+    private string Schedule => Routine.DaysOfWeek == 127 ? "Every day" : string.Join(", ", Enumerable.Range(0, 7).Where(d => (Routine.DaysOfWeek & (1 << d)) != 0).Select(d => CultureInfo.InvariantCulture.DateTimeFormat.AbbreviatedDayNames[d]));
+}

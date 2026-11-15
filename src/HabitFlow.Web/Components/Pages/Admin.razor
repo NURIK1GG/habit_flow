@@ -1,0 +1,16 @@
+@page "/admin"
+@attribute [Authorize(Roles = "Admin")]
+@inject IAdminService AdminService
+@inject ToastService Toasts
+<PageTitle>Administration · HabitFlow</PageTitle>
+<div class="page-heading"><div><div class="eyebrow">ADMINISTRATION</div><h1>A healthy community starts here.</h1><p class="muted">Manage account access. Personal routine notes remain private.</p></div><button class="btn btn-outline-primary" disabled="@busy" @onclick="Load">Refresh accounts</button></div>
+@if (error is not null) { <div class="alert alert-warning" role="alert">@error</div> }
+<div class="panel"><div class="section-heading"><h2>Community accounts</h2><span class="pill">@users.Count shown · up to 500</span></div><div class="table-responsive"><table class="table align-middle"><caption>Registered accounts and access status. Administrators cannot be suspended here.</caption><thead><tr><th scope="col">Member</th><th scope="col">Role</th><th scope="col">Routines</th><th scope="col">Status</th><th scope="col">Access</th></tr></thead><tbody>@foreach (var user in users) { <tr><td><strong>@user.DisplayName</strong><br /><span class="muted small">@user.Email</span></td><td>@(user.IsAdmin ? "Admin" : "User")</td><td>@user.Routines</td><td><span class="pill">@(user.IsLocked ? "Suspended" : "Active")</span></td><td><button class="btn btn-sm btn-outline-secondary" disabled="@(busy || user.IsAdmin)" @onclick="() => Toggle(user)">@(user.IsLocked ? "Restore access" : "Suspend")</button></td></tr> }</tbody></table></div></div>
+@code {
+    private IReadOnlyList<AdminUserDto> users = [];
+    private string? error;
+    private bool busy;
+    protected override Task OnInitializedAsync() => Load();
+    private async Task Load() { busy = true; try { users = await AdminService.UsersAsync(); error = null; } catch (Exception ex) { error = ex is RuleException or UnauthorizedAccessException ? ex.Message : "Unable to load accounts. Please retry."; } finally { busy = false; } }
+    private async Task Toggle(AdminUserDto user) { busy = true; try { await AdminService.SetLockedAsync(user.Id, !user.IsLocked); Toasts.Show("Account access updated."); await Load(); } catch (Exception ex) { error = ex is RuleException or UnauthorizedAccessException ? ex.Message : "Unable to update account access. Please retry."; } finally { busy = false; } }
+}

@@ -1,0 +1,6 @@
+@inject AppState State
+@if (State.Error is not null)
+{
+    <div class="alert alert-warning d-flex align-items-center gap-3" role="alert"><span>@State.Error</span><button class="btn btn-outline-secondary btn-sm" disabled="@State.IsBusy" @onclick="async () => await State.RefreshAsync()">Refresh</button></div>
+}
+@if (State.Data is null && State.Error is null) { <div class="loading-panel" role="status"><span class="spinner-border spinner-border-sm"></span> Opening your workspace…</div> }

@@ -1,0 +1,13 @@
+<div class="panel leaderboard-panel"><div class="section-heading"><h2>@Title</h2><span class="live-pill"><span class="status-dot"></span>Live</span></div><p class="muted small">Monthly check-ins. Shared motivation.</p>
+@if (Leaders.Count == 0) { <p class="empty-small">Be the first to join. Turn on your public profile in Settings.</p> }
+@foreach (var item in Leaders.Take(Limit).Select((leader, i) => (leader, i))) {
+    <div class="leader-row @(item.leader.IsMe ? "is-me" : "")"><span class="leader-rank">@(item.i + 1)</span><span class="avatar tone-@(item.i % 3)">@item.leader.DisplayName.FirstOrDefault()</span><div class="leader-name"><strong>@item.leader.DisplayName @if (item.leader.IsMe) { <span class="you-tag">you</span> }</strong><span>@item.leader.Completions check-ins</span></div><div class="leader-points">@item.leader.Points<span>pts</span></div></div>
+}
+@if (ShowLink) { <a class="panel-link" href="/community">Meet the community <Icon Name="trend" Size="12" /></a> }
+</div>
+@code {
+    [Parameter] public IReadOnlyList<LeaderboardDto> Leaders { get; set; } = [];
+    [Parameter] public int Limit { get; set; } = 5;
+    [Parameter] public string Title { get; set; } = "Better, together";
+    [Parameter] public bool ShowLink { get; set; } = true;
+}

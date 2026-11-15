@@ -1,0 +1,8 @@
+<div class="stat-card"><div class="stat-top"><span>@Label</span><span class="stat-symbol" aria-hidden="true"><Icon Name="@Icon" /></span></div><div class="stat-value">@Value <span>@Unit</span></div><div class="stat-note">@Note</div></div>
+@code {
+    [Parameter, EditorRequired] public string Label { get; set; } = "";
+    [Parameter, EditorRequired] public string Value { get; set; } = "";
+    [Parameter] public string Unit { get; set; } = "";
+    [Parameter] public string Note { get; set; } = "";
+    [Parameter] public string Icon { get; set; } = "trend";
+}

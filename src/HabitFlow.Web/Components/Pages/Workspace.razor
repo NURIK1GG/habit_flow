@@ -1,0 +1,64 @@
+@inherits TrackerPage
+@attribute [Authorize]
+@inject TimeProvider Clock
+<PageTitle>@Title · HabitFlow</PageTitle>
+<span hidden data-interactive-ready="@IsInteractive.ToString().ToLowerInvariant()"></span>
+<StateBanner />
+@if (State.Data is { } data)
+{
+    <div class="page-heading"><div><div class="eyebrow">@Today.ToString("dddd, MMMM d", CultureInfo.InvariantCulture) · Astana (UTC+5)</div><h1>@Heading</h1><p class="muted">@Subtitle</p></div><div class="heading-actions">@if (Mode == "progress") { <button class="btn btn-primary" disabled="@(!data.Routines.Any(r => !r.Archived) || State.IsBusy || !IsInteractive)" @onclick="() => OpenCheckIn(data.Routines.First(r => !r.Archived))">+ Log an entry</button> } else if (Mode is "overview" or "routines") { <button class="btn btn-primary" disabled="@(State.IsBusy || !IsInteractive)" @onclick="NewRoutine">+ New routine</button> }</div></div>
+    @if (Mode == "overview")
+    {
+        <div class="welcome-banner"><div><span class="eyebrow">YOUR DAILY DOSE OF MOMENTUM</span><h2>Progress starts with showing up.</h2><p>One day. One choice. One step closer to who you want to be.</p><a href="#today" class="banner-link">Let's make today count <span>→</span></a></div><div class="banner-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-sun"></div><div class="art-step step-one"></div><div class="art-step step-two"></div><div class="art-step step-three"></div><span class="art-star">✧</span></div></div>
+        <div class="stats-grid"><StatCard Label="Today's progress" Value="@($"{CompletedToday}/{ScheduledToday}")" Note="Scheduled routines completed" Icon="check" /><StatCard Label="Current streak" Value="@data.Routines.Where(r => !r.Archived).Select(r => r.CurrentStreak).DefaultIfEmpty(0).Max().ToString()" Unit="days" Note="Your strongest active routine" Icon="flame" /><StatCard Label="Focused time" Value="@data.Days.TakeLast(7).Sum(d => d.Minutes).ToString()" Unit="min" Note="Invested in yourself this week" Icon="clock" /><StatCard Label="Community points" Value="@((data.History.Count(h => h.Date.Year == Today.Year && h.Date.Month == Today.Month) * 10).ToString())" Note="10 points for every check-in this month" Icon="spark" /></div>
+        <WeeklyGoalCard Progress="ProgressInsights.Week(data.History, Today, data.Profile.WeeklyGoal)" />
+        <div class="overview-grid"><div class="main-feed"><ProgressChart Days="data.Days" /><section id="today"><div class="section-heading"><div><h2>Today's intentions <span class="count-badge">@ScheduledToday</span></h2><p class="muted small">Make a little room for what matters.</p></div><a class="text-button" href="/routines">View all →</a></div>
+            @foreach (var r in data.Routines.Where(r => !r.Archived && (r.DaysOfWeek & (1 << (int)Today.DayOfWeek)) != 0)) { <RoutineCard Routine="r" Busy="@(State.IsBusy || !IsInteractive)" OnComplete="OpenCheckIn" OnEdit="EditRoutine" OnArchive="Archive" @key="r.Id" /> }
+            @if (ScheduledToday == 0) { <div class="panel empty-small">A little breathing room. Build a routine or enjoy your rest day.</div> }
+        </section></div><div class="side-feed"><ActivityCalendar Days="data.Days" /><Leaderboard Leaders="data.Leaders" /><div class="reflection-card"><span>✧</span><h3>Keep the promise small.</h3><p>A ten-minute effort today is worth more than a perfect plan for tomorrow.</p><span class="tiny-label">A REMINDER FOR YOUR JOURNEY</span></div></div></div>
+    }
+    else if (Mode == "routines")
+    {
+        <div class="filter-bar"><div class="segmented" role="group" aria-label="Routine status"><button class="@(!showArchived ? "selected" : "")" @onclick="() => showArchived = false">Active</button><button class="@(showArchived ? "selected" : "")" @onclick="() => showArchived = true">Archived</button></div><label class="search-box"><span class="visually-hidden">Search routines</span><input class="form-control" placeholder="Search your routines…" @bind="search" @bind:event="oninput" /></label></div>
+        @foreach (var r in data.Routines.Where(r => r.Archived == showArchived && r.Title.Contains(search, StringComparison.OrdinalIgnoreCase))) { <RoutineCard Routine="r" Busy="@(State.IsBusy || !IsInteractive)" OnComplete="OpenCheckIn" OnEdit="EditRoutine" OnArchive="Archive" @key="r.Id" /> }
+        @if (!data.Routines.Any(r => r.Archived == showArchived && r.Title.Contains(search, StringComparison.OrdinalIgnoreCase))) { <div class="panel empty-state"><h2>A little space for something good.</h2><p>No routines match this view. Create one that fits your life.</p></div> }
+    }
+    else if (Mode == "progress")
+    {
+        <WeeklyGoalCard Progress="ProgressInsights.Week(data.History, Today, data.Profile.WeeklyGoal)" /><AchievementsPanel Items="ProgressInsights.Achievements(data)" />
+        <div class="progress-layout"><ProgressChart Days="data.Days" /><ActivityCalendar Days="data.Days" /></div>
+        <div class="panel mb-4"><h2>Your personal bests</h2><div class="best-grid">@foreach (var r in data.Routines.Where(r => !r.Archived)) { <div><strong>@r.Title</strong><span>@r.BestStreak day best streak</span></div> }</div></div>
+        <HistoryList Items="data.History" Busy="@(State.IsBusy || !IsInteractive)" OnUndo="Undo" />
+    }
+    else if (Mode == "community")
+    {
+        <div class="community-intro"><div><span class="eyebrow">CONSISTENCY IS CONTAGIOUS</span><h2>Your effort can inspire someone.</h2><p>Earn 10 points per check-in. A new month means a fresh start. Profiles are private until you choose to join.</p><a class="btn btn-outline-primary" href="/settings">@(data.Profile.IsPublic ? "Manage your visibility" : "Join the leaderboard") →</a></div><span aria-hidden="true">◎</span></div>
+        <Leaderboard Leaders="data.Leaders" Limit="100" ShowLink="false" Title="This month's leaderboard" /><p class="muted small mt-3">Astana calendar month (UTC+5) · Top 100 public profiles · Ties sort by display name, then account ID. Notes and routine names stay private.</p>
+    }
+    @if (Mode == "overview") { <AchievementsPanel Items="ProgressInsights.Achievements(data)" /> }
+    @if (routineEdit is not null) { <RoutineEditor Model="routineEdit" HasHistory="@(routineEdit.Id is { } id && data.History.Any(h => h.RoutineId == id))" Busy="@(State.IsBusy || !IsInteractive)" OnSave="SaveRoutine" OnCancel="CloseRoutine" /> }
+    @if (checkInEdit is not null) { <CheckInEditor Model="checkInEdit" Routines="data.Routines" Busy="@(State.IsBusy || !IsInteractive)" OnSave="SaveCheckIn" OnCancel="CloseCheckIn" /> }
+}
+@code {
+    [Parameter] public string View { get; set; } = "overview";
+    private string Mode => View;
+    private string Title => Mode switch { "routines" => "My routines", "progress" => "Your progress", "community" => "Community", _ => "Overview" };
+    private string Heading => Mode switch { "routines" => "Routines that work for you.", "progress" => "Look how far you've come.", "community" => "Better, together.", _ => $"Hello, {State.Data?.Profile.DisplayName.Split(' ')[0] ?? "there"}." };
+    private string Subtitle => Mode switch { "routines" => "Design your days around the things that matter.", "progress" => "Every check-in is evidence of the work you're putting in.", "community" => "A little accountability. A lot of encouragement.", _ => "Here's your space to grow. One good habit at a time." };
+    private DateOnly Today => TrackerCalendar.Today(Clock);
+    private int ScheduledToday => State.Data?.Routines.Count(r => !r.Archived && (r.DaysOfWeek & (1 << (int)Today.DayOfWeek)) != 0) ?? 0;
+    private int CompletedToday => State.Data?.Routines.Count(r => !r.Archived && r.CompletedToday) ?? 0;
+    private string search = "";
+    private bool showArchived;
+    private RoutineEdit? routineEdit;
+    private CheckInEdit? checkInEdit;
+    private void NewRoutine() => routineEdit = new();
+    private void EditRoutine(RoutineDto r) => routineEdit = new() { Id = r.Id, Title = r.Title, Description = r.Description, Revision = r.Revision, Kind = r.Kind, TargetMinutes = r.TargetMinutes, DaysOfWeek = r.DaysOfWeek, Steps = r.Steps.Select(s => new StepEdit { Name = s.Name, Sets = s.Sets, Repetitions = s.Repetitions }).ToList() };
+    private void OpenCheckIn(RoutineDto r) => checkInEdit = new() { RoutineId = r.Id, Minutes = r.TargetMinutes, Date = Today };
+    private void CloseRoutine() => routineEdit = null;
+    private void CloseCheckIn() => checkInEdit = null;
+    private async Task SaveRoutine(RoutineEdit edit) { if (await Act(() => Tracker.SaveRoutineAsync(edit), "Your routine is ready. Make it your own.")) routineEdit = null; }
+    private async Task SaveCheckIn(CheckInEdit edit) { if (await Act(() => Tracker.CheckInAsync(edit), "Progress recorded. You showed up!")) checkInEdit = null; }
+    private Task Archive(RoutineDto r) => Act(() => Tracker.SetArchivedAsync(r.Id, !r.Archived), r.Archived ? "Routine restored." : "Routine archived. Your history is preserved.");
+    private Task Undo(Guid id) => Act(() => Tracker.UndoAsync(id), "Entry removed. Your streaks and points have been recalculated.");
+}

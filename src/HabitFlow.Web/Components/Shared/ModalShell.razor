@@ -1,0 +1,26 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+<dialog @ref="dialog" class="app-dialog" aria-labelledby="@titleId"><div class="dialog-header"><h2 id="@titleId">@Title</h2><button type="button" class="btn-close" aria-label="Close dialog" @onclick="() => OnClose.InvokeAsync()"></button></div>@ChildContent</dialog>
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    private readonly string titleId = "dialog-" + Guid.NewGuid().ToString("N");
+    private ElementReference dialog;
+    private IJSObjectReference? module;
+    private DotNetObjectReference<ModalShell>? reference;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/dialog.js");
+        reference = DotNetObjectReference.Create(this);
+        await module.InvokeVoidAsync("open", dialog, reference);
+    }
+    [JSInvokable] public Task Close() => OnClose.InvokeAsync();
+    public async ValueTask DisposeAsync()
+    {
+        try { if (module is not null) { await module.InvokeVoidAsync("close", dialog); await module.DisposeAsync(); } }
+        catch (JSDisconnectedException) { }
+        reference?.Dispose();
+    }
+}

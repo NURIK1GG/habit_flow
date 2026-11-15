@@ -1,0 +1,11 @@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+            <NotAuthorized>
+                <section class="empty-state"><h1>Let's build your momentum.</h1><p>Sign in to open your personal workspace.</p><a class="btn btn-primary" href="/account/login" data-enhance-nav="false">Sign in</a></section>
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound><LayoutView Layout="typeof(MainLayout)"><section class="empty-state"><h1>Page not found</h1><a href="/">Return to your dashboard</a></section></LayoutView></NotFound>
+</Router>

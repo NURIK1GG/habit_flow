@@ -1,0 +1,16 @@
+<div class="panel chart-panel"><div class="section-heading"><div><h2>Consistency, in motion</h2><p class="muted small">Daily check-ins · every small effort adds up</p></div><div class="segmented" role="group" aria-label="Chart period">@foreach (var range in new[] { 7, 14, 28 }) { var count = range; <button class="@(period == count ? "selected" : "")" aria-pressed="@(period == count)" @onclick="() => period = count">@count d</button> }</div></div>
+<div class="chart-summary"><strong>@Visible.Sum(d => d.Completed)</strong> check-ins <span>· @Visible.Sum(d => d.Minutes) focused minutes</span></div>
+<div class="chart-plot"><div class="chart-grid"><span>@Max</span><span>@(Max / 2)</span><span>0</span></div><svg viewBox="0 0 700 180" preserveAspectRatio="none" role="img" aria-label="@($"Daily check-ins over the last {period} days. {Visible.Sum(d => d.Completed)} check-ins total. Data table below.")"><defs><linearGradient id="@gradientId" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#698e6c" stop-opacity="0.3" /><stop offset="100%" stop-color="#698e6c" stop-opacity="0.01" /></linearGradient></defs><path d="M0 10 H700 M0 90 H700 M0 170 H700" stroke="#e6ebe3" fill="none" stroke-dasharray="4 5" /><polygon points="@($"0,170 {Points} 700,170")" fill="@($"url(#{gradientId})")" /><polyline points="@Points" fill="none" stroke="#54795a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />@foreach (var item in Visible.Select((d, i) => (d, i))) { <circle cx="@F(X(item.i))" cy="@F(Y(item.d.Completed))" r="3.4" fill="#54795a"><title>@item.d.Date.ToString("MMM d"): @item.d.Completed check-ins</title></circle> }</svg></div>
+<div class="chart-axis"><span>@Visible.FirstOrDefault()?.Date.ToString("MMM d")</span><span>@Visible.LastOrDefault()?.Date.ToString("MMM d")</span></div>
+<details class="chart-data"><summary>View chart data</summary><div class="table-responsive"><table class="table table-sm"><caption>Daily activity for the selected period (Astana, UTC+5)</caption><thead><tr><th scope="col">Date</th><th scope="col">Check-ins</th><th scope="col">Minutes</th></tr></thead><tbody>@foreach (var d in Visible) { <tr><th scope="row">@d.Date.ToString("MMM d")</th><td>@d.Completed</td><td>@d.Minutes</td></tr> }</tbody></table></div></details></div>
+@code {
+    [Parameter] public IReadOnlyList<DayDto> Days { get; set; } = [];
+    private int period = 14;
+    private readonly string gradientId = "area" + Guid.NewGuid().ToString("N");
+    private DayDto[] Visible => Days.TakeLast(period).ToArray();
+    private int Max => Math.Max(4, Visible.Select(d => d.Completed).DefaultIfEmpty(0).Max());
+    private double X(int i) => i * 700d / Math.Max(1, Visible.Length - 1);
+    private double Y(int value) => 170 - value * 160d / Max;
+    private static string F(double v) => v.ToString("0.##", CultureInfo.InvariantCulture);
+    private string Points => string.Join(" ", Visible.Select((d, i) => $"{F(X(i))},{F(Y(d.Completed))}"));
+}

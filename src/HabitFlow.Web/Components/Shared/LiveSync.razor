@@ -1,0 +1,31 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+@inject AppState State
+@inject ILogger<LiveSync> Logger
+@if (!connected) { <div class="live-status" role="status">Live sync reconnecting… Your saved data is available.</div> }
+@code {
+    private IJSObjectReference? module;
+    private IJSObjectReference? bridge;
+    private DotNetObjectReference<LiveSync>? reference;
+    private bool connected = true;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        try {
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/live.js");
+            reference = DotNetObjectReference.Create(this);
+            bridge = await module.InvokeAsync<IJSObjectReference>("connect", reference);
+        } catch (JSDisconnectedException) { }
+    }
+    [JSInvokable] public Task Refresh() => InvokeAsync(async () => { try { await State.RefreshAsync(); } catch (ObjectDisposedException) { } });
+    [JSInvokable] public Task ConnectionChanged(bool value) => InvokeAsync(() => { connected = value; StateHasChanged(); });
+    public async ValueTask DisposeAsync()
+    {
+        try {
+            if (bridge is not null) { await bridge.InvokeVoidAsync("stop"); await bridge.DisposeAsync(); }
+            if (module is not null) await module.DisposeAsync();
+        } catch (JSDisconnectedException) { }
+        catch (JSException ex) { Logger.LogDebug(ex, "Live sync was already closed"); }
+        reference?.Dispose();
+    }
+}

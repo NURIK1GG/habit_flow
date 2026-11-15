@@ -1,0 +1,20 @@
+<ModalShell Title="@(Model.Id is null ? "Build a new routine" : "Edit your routine")" OnClose="OnCancel">
+<EditForm Model="Model" OnValidSubmit="() => OnSave.InvokeAsync(Model)" FormName="routine-editor"><DataAnnotationsValidator /><ValidationSummary />
+    <div class="dialog-body"><label for="routine-title" class="form-label">Routine name</label><InputText id="routine-title" class="form-control" @bind-Value="Model.Title" maxlength="80" placeholder="e.g. Morning mobility" /><ValidationMessage For="() => Model.Title" />
+    <label for="routine-description" class="form-label mt-3">What does this routine mean to you?</label><InputTextArea id="routine-description" class="form-control" @bind-Value="Model.Description" maxlength="500" rows="2" /><ValidationMessage For="() => Model.Description" />
+    <div class="row mt-3"><div class="col-sm-6"><label for="routine-kind" class="form-label">Type</label><InputSelect id="routine-kind" class="form-select" @bind-Value="Model.Kind" disabled="@HasHistory"><option value="Habit">Habit</option><option value="Workout">Workout</option></InputSelect></div><div class="col-sm-6"><label for="routine-minutes" class="form-label">Target minutes</label><InputNumber id="routine-minutes" class="form-control" @bind-Value="Model.TargetMinutes" min="1" max="600" /><ValidationMessage For="() => Model.TargetMinutes" /></div></div>
+    <fieldset class="mt-3" disabled="@HasHistory"><legend class="form-label">Repeat on</legend><div class="day-picker">@foreach (var day in Enumerable.Range(0, 7)) { var d = day; <button type="button" class="day-button @((Model.DaysOfWeek & (1 << d)) != 0 ? "selected" : "")" aria-label="@CultureInfo.InvariantCulture.DateTimeFormat.DayNames[d]" aria-pressed="@((Model.DaysOfWeek & (1 << d)) != 0)" @onclick="() => Model.DaysOfWeek ^= 1 << d">@CultureInfo.InvariantCulture.DateTimeFormat.AbbreviatedDayNames[d]</button> }</div></fieldset><ValidationMessage For="() => Model.DaysOfWeek" />
+    @if (HasHistory) { <p class="muted small mt-2">Schedule and type are fixed after your first check-in to preserve your history.</p> }
+    <div class="section-heading mt-4"><h3>Exercises <span class="muted small">(optional)</span></h3><button type="button" class="text-button" disabled="@(Model.Steps.Count >= 20)" @onclick="() => Model.Steps.Add(new())">+ Add exercise</button></div>
+    @foreach (var step in Model.Steps) { var item = step; var index = Model.Steps.IndexOf(step);
+        <div class="exercise-editor" @key="item"><div><label class="small" for="@($"step-{index}")">Exercise</label><InputText id="@($"step-{index}")" class="form-control" @bind-Value="item.Name" maxlength="80" /><ValidationMessage For="() => item.Name" /></div><div><label class="small" for="@($"sets-{index}")">Sets</label><InputNumber id="@($"sets-{index}")" class="form-control" @bind-Value="item.Sets" min="1" max="30" /></div><div><label class="small" for="@($"reps-{index}")">Reps</label><InputNumber id="@($"reps-{index}")" class="form-control" @bind-Value="item.Repetitions" min="1" max="500" /></div><button type="button" class="text-button" aria-label="@($"Remove exercise {index + 1}")" @onclick="() => Model.Steps.Remove(item)">×</button></div>
+    }
+    </div><div class="dialog-footer"><button type="button" class="btn btn-outline-secondary" @onclick="() => OnCancel.InvokeAsync()">Cancel</button><button class="btn btn-primary" disabled="@Busy" type="submit">@(Busy ? "Saving…" : "Save routine")</button></div>
+</EditForm></ModalShell>
+@code {
+    [Parameter, EditorRequired] public RoutineEdit Model { get; set; } = default!;
+    [Parameter] public bool HasHistory { get; set; }
+    [Parameter] public bool Busy { get; set; }
+    [Parameter] public EventCallback<RoutineEdit> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+}

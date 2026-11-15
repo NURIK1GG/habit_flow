@@ -1,0 +1,12 @@
+@page "/account/register"
+@attribute [AllowAnonymous]
+<PageTitle>Create account · HabitFlow</PageTitle>
+<section class="auth-wrap"><div class="auth-story"><span class="eyebrow">YOUR NEXT CHAPTER</span><h1>A fresh start.<br />At your pace.</h1><p>Your profile starts private. Join the community leaderboard whenever you're ready.</p></div><div class="panel auth-form"><h2>Create your account</h2>
+@if (!string.IsNullOrEmpty(Error)) { <div class="alert alert-danger" role="alert">@Error</div> }
+<form method="post" action="/auth/register" data-enhance="false"><AntiforgeryToken />
+<label for="name" class="form-label">Display name</label><input id="name" name="name" class="form-control" required minlength="2" maxlength="40" autocomplete="nickname" />
+<label for="email" class="form-label mt-3">Email address</label><input id="email" name="email" type="email" class="form-control" required maxlength="254" autocomplete="username" />
+<label for="password" class="form-label mt-3">Password</label><input id="password" name="password" type="password" class="form-control" required minlength="10" maxlength="128" autocomplete="new-password" aria-describedby="password-help" />
+<p id="password-help" class="muted small mt-2">10+ characters with uppercase, lowercase, a number and a symbol.</p>
+<button class="btn btn-primary w-100" type="submit">Start building momentum →</button></form><p class="mt-4">Already a member? <a href="/account/login" data-enhance-nav="false">Sign in</a></p></div></section>
+@code { [SupplyParameterFromQuery(Name = "error")] public string? Error { get; set; } }

@@ -1,0 +1,11 @@
+<div class="panel"><div class="section-heading"><h2>Your activity journal</h2><span class="pill">@Items.Count entries</span></div><p class="muted small">Your notes are private. Undo an entry to correct a mistake.</p>
+@if (Items.Count == 0) { <div class="empty-small">Your first check-in will appear here.</div> }
+else { <div class="history-scroll" tabindex="0" aria-label="Activity history"><Virtualize Items="entries" Context="entry" ItemSize="92"><article class="history-row" @key="entry.Id"><div class="history-date"><strong>@entry.Date.Day</strong><span>@entry.Date.ToString("MMM yyyy")</span></div><div class="history-info"><strong>@entry.Title</strong><p>@(string.IsNullOrEmpty(entry.Notes) ? "A little more progress." : entry.Notes)</p></div><span class="muted small">@entry.Minutes min</span><button class="text-button" disabled="@Busy" @onclick="() => OnUndo.InvokeAsync(entry.Id)" aria-label="@($"Undo {entry.Title} on {entry.Date:yyyy-MM-dd}")">Undo</button></article></Virtualize></div> }
+</div>
+@code {
+    [Parameter] public IReadOnlyList<HistoryDto> Items { get; set; } = [];
+    [Parameter] public bool Busy { get; set; }
+    [Parameter] public EventCallback<Guid> OnUndo { get; set; }
+    private ICollection<HistoryDto> entries = Array.Empty<HistoryDto>();
+    protected override void OnParametersSet() => entries = Items.ToArray();
+}

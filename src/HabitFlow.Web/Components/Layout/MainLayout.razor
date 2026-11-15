@@ -1,0 +1,46 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject AppState State
+<a class="skip-link" href="#main">Skip to content</a>
+<CascadingValue Value="session" IsFixed="true">
+<div class="app-shell">
+    <aside class="sidebar">
+        <a href="/" class="brand"><span class="brand-icon">h</span>habitflow<span class="brand-dot">.</span></a>
+        <div class="sidebar-label">YOUR WORKSPACE</div>
+        <nav aria-label="Main navigation">
+            <NavLink href="/" Match="NavLinkMatch.All"><span><Icon Name="grid" /></span> Overview</NavLink>
+            <NavLink href="/routines"><span><Icon Name="list" /></span> My routines</NavLink>
+            <NavLink href="/progress"><span><Icon Name="trend" /></span> Progress</NavLink>
+            <NavLink href="/community"><span><Icon Name="community" /></span> Community</NavLink>
+            <NavLink href="/settings"><span><Icon Name="settings" /></span> Settings</NavLink>
+            <AuthorizeView Roles="Admin"><Authorized><NavLink href="/admin"><span><Icon Name="shield" /></span> Administration</NavLink></Authorized></AuthorizeView>
+        </nav>
+        <div class="sidebar-bottom"><div class="tiny-label">SMALL STEPS. REAL CHANGE.</div><p>Consistency is a practice.<br />Make today count.</p></div>
+    </aside>
+    <div class="main-column">
+        <header class="topbar"><ThemeToggle /><div><span class="status-dot"></span> A little better, every day</div>
+            <AuthorizeView><Authorized><div class="account-menu"><span class="avatar">@Initials</span><span class="account-name">@session.DisplayName</span>
+                <form method="post" action="/auth/logout" data-enhance="false"><AntiforgeryToken /><button class="btn btn-link btn-sm" type="submit">Sign out</button></form></div></Authorized>
+                <NotAuthorized><a href="/account/login" data-enhance-nav="false">Sign in</a></NotAuthorized></AuthorizeView>
+        </header>
+        <main id="main" tabindex="-1">
+            <ErrorBoundary @ref="boundary">
+                <ChildContent>@Body</ChildContent>
+                <ErrorContent><section class="empty-state" role="alert"><h1>Let's try that again</h1><p>This view could not be loaded. Reload to reconnect safely.</p><a class="btn btn-primary" href="/" data-enhance-nav="false">Reload workspace</a></section></ErrorContent>
+            </ErrorBoundary>
+        </main>
+        <footer>HabitFlow · Built one day at a time <span>All tracking dates use Astana time (UTC+5)</span></footer>
+    </div>
+</div>
+<ToastHost />
+<AuthorizeView><Authorized><LiveSync /></Authorized></AuthorizeView>
+</CascadingValue>
+@code {
+    private readonly UiSession session = new();
+    private ErrorBoundary? boundary;
+    private string Initials => string.Concat(session.DisplayName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(s => s[0]));
+    protected override void OnInitialized() { State.Changed += OnChanged; }
+    protected override void OnParametersSet() => boundary?.Recover();
+    private void OnChanged() => _ = InvokeAsync(() => { session.DisplayName = State.Data?.Profile.DisplayName ?? "Your workspace"; StateHasChanged(); });
+    public void Dispose() => State.Changed -= OnChanged;
+}

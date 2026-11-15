@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../HabitFlow.Application/HabitFlow.Application.csproj"/>
+    <ProjectReference Include="../HabitFlow.Infrastructure/HabitFlow.Infrastructure.csproj"/>
+  </ItemGroup>
+</Project>

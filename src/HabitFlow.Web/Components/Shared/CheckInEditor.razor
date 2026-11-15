@@ -1,0 +1,13 @@
+@inject TimeProvider Clock
+<ModalShell Title="A little progress worth recording" OnClose="OnCancel"><EditForm Model="Model" OnValidSubmit="() => OnSave.InvokeAsync(Model)" FormName="checkin-editor"><DataAnnotationsValidator /><ValidationSummary /><div class="dialog-body">
+<label for="checkin-routine" class="form-label">Routine</label><InputSelect id="checkin-routine" class="form-select" @bind-Value="Model.RoutineId">@foreach (var routine in Routines.Where(r => !r.Archived)) { <option value="@routine.Id">@routine.Title</option> }</InputSelect>
+<div class="row mt-3"><div class="col-sm-6"><label for="checkin-date" class="form-label">Date (Astana, UTC+5)</label><InputDate id="checkin-date" class="form-control" @bind-Value="Model.Date" max="@Today.ToString("yyyy-MM-dd")" min="@Today.AddDays(-365).ToString("yyyy-MM-dd")" /></div><div class="col-sm-6"><label for="checkin-minutes" class="form-label">Minutes spent</label><InputNumber id="checkin-minutes" class="form-control" @bind-Value="Model.Minutes" min="1" max="600" /><ValidationMessage For="() => Model.Minutes" /></div></div>
+<label for="checkin-notes" class="form-label mt-3">A note to your future self <span class="muted">(optional)</span></label><InputTextArea id="checkin-notes" class="form-control" @bind-Value="Model.Notes" rows="3" maxlength="300" /><ValidationMessage For="() => Model.Notes" /><p class="muted small mt-3">One entry per scheduled day. Each entry earns 10 community points.</p></div><div class="dialog-footer"><button class="btn btn-outline-secondary" type="button" @onclick="() => OnCancel.InvokeAsync()">Cancel</button><button type="submit" disabled="@Busy" class="btn btn-primary">@(Busy ? "Saving…" : "Save check-in")</button></div></EditForm></ModalShell>
+@code {
+    [Parameter, EditorRequired] public CheckInEdit Model { get; set; } = default!;
+    [Parameter] public IReadOnlyList<RoutineDto> Routines { get; set; } = [];
+    [Parameter] public bool Busy { get; set; }
+    [Parameter] public EventCallback<CheckInEdit> OnSave { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    private DateOnly Today => TrackerCalendar.Today(Clock);
+}

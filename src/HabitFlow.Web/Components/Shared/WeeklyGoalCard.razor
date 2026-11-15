@@ -1,0 +1,8 @@
+<section class="panel weekly-goal" aria-labelledby="weekly-goal-heading">
+    <div class="section-heading"><div><span class="eyebrow">YOUR WEEK, YOUR PACE</span><h2 id="weekly-goal-heading">A little progress, every week.</h2></div><span class="goal-emblem"><Icon Name="habit" Size="32" /></span></div>
+    <div class="goal-numbers"><strong>@Progress.Completed<span> / @Progress.Target</span></strong><span class="muted">check-ins completed</span><span class="goal-percent">@Progress.Percent%</span></div>
+    <div class="goal-track" role="progressbar" aria-label="Weekly check-in goal" aria-valuenow="@Math.Min(Progress.Completed, Progress.Target)" aria-valuemin="0" aria-valuemax="@Progress.Target"><div style="@($"width:{Progress.Percent}%")"></div></div>
+    <div class="goal-footer"><span>@(Progress.Remaining == 0 ? "Goal reached. Every extra step is a bonus." : $"{Progress.Remaining} more to reach your weekly goal.")</span><a href="/settings">Edit goal →</a></div>
+    <p class="muted small mb-0 mt-3">@Progress.Start.ToString("MMM d") – @Progress.End.ToString("MMM d") · Astana · @Progress.ActiveDays active days · @Progress.Minutes min</p>
+</section>
+@code { [Parameter, EditorRequired] public WeeklyProgressDto Progress { get; set; } = default!; }

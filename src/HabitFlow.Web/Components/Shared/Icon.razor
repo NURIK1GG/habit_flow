@@ -1,0 +1,20 @@
+<svg width="@Size" height="@Size" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:middle;flex-shrink:0"><path d="@Path" /></svg>
+@code {
+    [Parameter] public string Name { get; set; } = "trend";
+    [Parameter] public int Size { get; set; } = 18;
+    private string Path => Name switch
+    {
+        "grid" => "M3 3h18v18H3z M9 3v18 M9 10h12",
+        "list" => "M5 4h14v17H5z M8 8h8 M8 12h8 M8 16h5",
+        "community" => "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M17 4a4 4 0 0 1 0 8 M22 21v-2a4 4 0 0 0-3-3.87",
+        "settings" => "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M12 2v3 M12 19v3 M2 12h3 M19 12h3 M5 5l2 2 M17 17l2 2 M5 19l2-2 M17 7l2-2",
+        "shield" => "M12 2l9 4v6c0 5-9 10-9 10S3 17 3 12V6z M8 12l3 3 5-6",
+        "workout" => "M3 8v8 M6 5v14 M6 12h12 M18 5v14 M21 8v8",
+        "habit" => "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18 M8 12l3 3 5-6",
+        "check" => "M5 12l4 4L19 6",
+        "flame" => "M12 2c2 5-2 5-2 9 0 2 2 3 3 1 1-1 1-3 1-3s5 4 5 8a7 7 0 0 1-14 0c0-3 2-6 4-8-1 4 1 4 1 2 0-3 2-5 2-9z",
+        "clock" => "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18 M12 7v6l4 2",
+        "spark" => "M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z",
+        _ => "M3 17l6-6 4 4 8-10 M15 5h6v6"
+    };
+}
